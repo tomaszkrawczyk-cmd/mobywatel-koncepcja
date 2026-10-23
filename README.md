@@ -42,3 +42,5 @@ Statyczna strona: `index.html`, `style.css`, `app.js` (v1–v2), `v3.js` (v3), `
 - Progi poparcia (10% w gminie i powiecie, 5% w województwie) i 60 dni na zbiórkę przyjęto według art. 4 i art. 14 ustawy o referendum lokalnym w brzmieniu, które stosują komisarze wyborczy. Nowelizacja w druku sejmowym 933 przewidywała 5% / 2,5% i 6 miesięcy – nie ustalono, który reżim obowiązuje.
 - Wzór opłaty w EPU (¼ opłaty stosunkowej) i stawki są uproszczone; sprawdź ustawę o kosztach sądowych w sprawach cywilnych.
 - Zbieranie podpisów pod wnioskiem o referendum ogólnokrajowe w formie elektronicznej to koncepcja de lege ferenda.
+- Skutki sprzeciwu w EPU (przekazanie sprawy sądowi właściwemu, art. 505³⁷ k.p.c.), jego forma i opłata – do sprawdzenia w tekście ustawy i w pouczeniu nakazu.
+- Wszystkie sygnatury, osoby, kwoty, komisje wyborcze i daty wyborów są fikcyjne.
