@@ -2,7 +2,7 @@
 
 Klikalny prototyp na mObywatel Challenge. Autor koncepcji: Tomasz Krawczyk – Supplemental. Nie jest oficjalną aplikacją, wszystkie dane są fikcyjne.
 
-Statyczna strona: `index.html`, `style.css`, `app.js` (v1–v2), `v3.js` (v3), `v4.js` (v4).
+Statyczna strona: `index.html`, `style.css`, `app.js` (v1–v2), `v3.js` (v3), `v4.js` (v4), `v5.js` (v5), `v6.js` (v6).
 
 ## Nowe w v3
 
@@ -26,3 +26,19 @@ Statyczna strona: `index.html`, `style.css`, `app.js` (v1–v2), `v3.js` (v3), `
 - **Prawo i sądy** – sprawy z portalu informacyjnego, doradca prawny AI z podstawą prawną, pozew i pismo procesowe w kreatorze, baza aktów (API ELI), rejestry (KRS, CEIDG, KW, CEPiK, biała lista, KRZ), „Wyjaśnij pismo” z wykryciem terminu.
 - **Płatności** – podłączenie konta przez bank (zgoda PSD2) i karty jako tokenu, płatności automatyczne.
 - **Pomoc społeczna** (kalkulator orientacyjny, decyzja zawsze po stronie pracownika socjalnego), **budowa** (e-Budownictwo), **taryfa prądu** G11/G12, **bilet PKP**, **pomoc cyfrowa** (Wi-Fi, senior, wolontariusz), **adres e-Doręczeń i rządowy alias e-mail**, **alerty**, gotowe ustawienia Bielik/PLLuM.
+
+## Nowe w v5
+
+- **Edukacja** – e-Matura z wynikami i deklaracją, rekrutacja na studia, kalkulator punktów (wzory przykładowe), **Polskie technologie** (Bielik, PLLuM, basal, Zeccer – informacyjnie, bez współpracy z twórcami).
+
+## Nowe w v6
+
+- **e-Sąd** – pozew w elektronicznym postępowaniu upominawczym (EPU) z kalkulatorem opłaty (¼ opłaty od pozwu), sprzeciw od nakazu zapłaty z terminem 14 dni, wniosek do komornika.
+- **Wybory powszechne** – lokal wyborczy, zmiana miejsca głosowania, głosowanie korespondencyjne, pełnomocnik, zaświadczenie. Głosowanie przez internet w wyborach powszechnych jest tu wyłącznie koncepcją pilotażu: obecny Kodeks wyborczy go nie dopuszcza.
+- **Referenda** – podpisanie wniosku, zgłoszenie referendum lokalnego (kreator, kontrola pytania, zbiórka podpisów z QR) i koncepcja komitetu referendum ogólnokrajowego.
+
+### Niepewności prawne (do weryfikacji z aktualnym tekstem aktów)
+
+- Progi poparcia (10% w gminie i powiecie, 5% w województwie) i 60 dni na zbiórkę przyjęto według art. 4 i art. 14 ustawy o referendum lokalnym w brzmieniu, które stosują komisarze wyborczy. Nowelizacja w druku sejmowym 933 przewidywała 5% / 2,5% i 6 miesięcy – nie ustalono, który reżim obowiązuje.
+- Wzór opłaty w EPU (¼ opłaty stosunkowej) i stawki są uproszczone; sprawdź ustawę o kosztach sądowych w sprawach cywilnych.
+- Zbieranie podpisów pod wnioskiem o referendum ogólnokrajowe w formie elektronicznej to koncepcja de lege ferenda.
