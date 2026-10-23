@@ -56,3 +56,11 @@ textarea{resize:vertical}
 body.contrast .diff del,body.contrast .diff ins,body.contrast .thumb{color:#000}
 .jump .sep{font-size:.75em;color:var(--mut);text-transform:uppercase;letter-spacing:1px;margin:10px 8px 2px}
 @media(max-width:860px){.foot{position:static;font-size:10px;padding:4px}.phone{height:100dvh}}
+/* ===== v4 ===== */
+.searchbar{display:block;width:100%;text-align:left;border:1.5px solid #cfd6e3;background:#fff;border-radius:12px;padding:12px;color:var(--mut);font-size:.95em;margin-bottom:12px;cursor:pointer}
+.card.kid{display:flex;gap:12px;align-items:center;text-decoration:none;color:inherit;position:relative}.av{width:44px;height:44px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.2em;flex-shrink:0}.badge{position:absolute;right:12px;background:var(--red);color:#fff;border-radius:10px;padding:2px 8px;font-size:.75em;font-weight:700}
+.legend{display:flex;gap:10px;flex-wrap:wrap;font-size:.75em;margin-top:6px}.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px}
+.qr.mini{width:56px;height:56px;margin:0}
+.sheetframe{border:2px dashed #cfd6e3;border-radius:12px;padding:14px;text-align:center;color:var(--mut);margin:10px 0}
+.card.agstep.run{box-shadow:0 0 0 2px var(--warn)}.card.agstep.ok{opacity:.75}
+body.contrast .searchbar{background:#000;color:#fff;border-color:#fff}
