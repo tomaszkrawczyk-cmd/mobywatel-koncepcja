@@ -2,7 +2,7 @@
 
 Klikalny prototyp na mObywatel Challenge. Autor koncepcji: Tomasz Krawczyk – Supplemental. Nie jest oficjalną aplikacją, wszystkie dane są fikcyjne.
 
-Statyczna strona: `index.html`, `style.css`, `app.js` (v1–v2), `v3.js` (v3), `v4.js` (v4), `v5.js` (v5), `v6.js` (v6).
+Statyczna strona: `index.html`, `style.css`, `app.js` (v1–v2), `v3.js` (v3), `v4.js` (v4), `v5.js` (v5), `v6.js` (v6), `v7.js` (v7).
 
 ## Nowe w v3
 
@@ -44,3 +44,15 @@ Statyczna strona: `index.html`, `style.css`, `app.js` (v1–v2), `v3.js` (v3), `
 - Zbieranie podpisów pod wnioskiem o referendum ogólnokrajowe w formie elektronicznej to koncepcja de lege ferenda.
 - Skutki sprzeciwu w EPU (przekazanie sprawy sądowi właściwemu, art. 505³⁷ k.p.c.), jego forma i opłata – do sprawdzenia w tekście ustawy i w pouczeniu nakazu.
 - Wszystkie sygnatury, osoby, kwoty, komisje wyborcze i daty wyborów są fikcyjne.
+
+## Nowe w v7
+
+- **e-Recepty** – kod do apteki (QR i 4 cyfry), zapas leków z przypomnieniem, dostępność w aptekach (dane losowe), prośba o przedłużenie leku przyjmowanego na stałe.
+- **Bilety i opłaty** – komunikacja miejska w kilku miastach z ulgą pobraną z mObywatela, bilety PKP, wyszukiwarka lotów, przejazdy autostradowe (koncepcja), jedna lista biletów z kodami QR. Ceny i rozkłady są przykładowe.
+- **Przewodnik** – wycieczka po aplikacji, katalog według sytuacji życiowej, lista najczęściej używanych usług.
+
+### Niepewności (v7)
+
+- Zakup przejazdu autostradą z góry wymaga umów z operatorami odcinków; zasady płatności na A1, A2 i A4 oraz zakres e-TOLL (pojazdy ciężkie, autobusy) należy sprawdzić w aktualnych przepisach.
+- Sprzedaż biletów lotniczych i komunikacji miejskiej wymaga interfejsów partnerskich przewoźników i organizatorów transportu; prototyp tego nie zakłada.
+- Opis przedłużania recept jest uproszczony: o wystawieniu recepty decyduje lekarz.
