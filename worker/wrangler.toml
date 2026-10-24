@@ -4,11 +4,15 @@ compatibility_date = "2026-10-01"
 
 [vars]
 ALLOWED_ORIGIN = "https://tomaszkrawczyk-cmd.github.io"
-# Wybierz jednego dostawcę zgodnego z OpenAI (sprawdź aktualny adres i nazwę modelu w jego dokumentacji):
-LLM_BASE = "https://generativelanguage.googleapis.com/v1beta/openai"
-LLM_MODEL = "WPISZ-NAZWE-MODELU"
-# Klucz: npx wrangler secret put LLM_KEY
 
-# Alternatywa bez zewnętrznego klucza (Workers AI) – odkomentuj i ustaw LLM_MODEL na model Workers AI:
-# [ai]
-# binding = "AI"
+# --- Wariant A: Claude (Anthropic) – domyślny w tej konfiguracji ---
+LLM_PROVIDER = "anthropic"
+LLM_BASE = "https://api.anthropic.com"
+LLM_MODEL = "claude-haiku-5-5"   # lepsza polszczyzna, drożej: claude-sonnet-5-5
+
+# --- Wariant B: dostawca zgodny z OpenAI (np. Gemini z darmowym planem) ---
+# usuń LLM_PROVIDER i ustaw:
+# LLM_BASE = "https://generativelanguage.googleapis.com/v1beta/openai"
+# LLM_MODEL = "<nazwa modelu z dokumentacji dostawcy>"
+
+# Klucz (sekret, nie wpisuj go tutaj): npx wrangler secret put LLM_KEY

@@ -21,9 +21,21 @@ Plik `worker/worker.js` trzyma klucz w sekrecie, wpuszcza tylko żądania z jedn
 
 Worker zwraca 403 dla obcych źródeł, 413 dla zbyt dużych żądań, 429 po przekroczeniu 12 zapytań na minutę z jednego adresu. Licznik jest w pamięci instancji, więc to ochrona orientacyjna. Na poważnie włącz powiązanie Rate Limiting (`env.RL`), kod już je obsługuje.
 
+## Claude (Anthropic) krok po kroku
+
+1. Konto i klucz: console.anthropic.com, doładuj niewielką kwotę, w ustawieniach ustaw niski limit wydatków, utwórz klucz API (to płatne API, osobne od subskrypcji Claude).
+2. Cloudflare: załóż darmowe konto na cloudflare.com i zainstaluj Node.js.
+3. W terminalu: `git clone https://github.com/tomaszkrawczyk-cmd/mobywatel-koncepcja && cd mobywatel-koncepcja/worker`.
+4. `npx wrangler login`, potem `npx wrangler deploy`. Konfiguracja w `wrangler.toml` jest już ustawiona na Claude Haiku 5.5. Na końcu dostajesz adres `https://mobywatel-asystent.<konto>.workers.dev`.
+5. `npx wrangler secret put LLM_KEY` i wklej klucz Anthropic (tylko tam).
+6. W aplikacji: menu, Asystent AI, „Przez pośrednika”, wklej adres Workera, „Zapisz i sprawdź”. Ma być zielone „Połączono”.
+7. Zapytaj w asystencie o coś swobodnego (np. „zepsuł mi się samochód po zakupie, co robić?”).
+
+Zmiana na lepszą polszczyznę: w `wrangler.toml` ustaw `LLM_MODEL = "claude-sonnet-5-5"` i ponów `npx wrangler deploy`.
+
 ## Tryb bezpośredni (tylko próby)
 
-Przeglądarka woła dostawcę sama, a klucz leży w jej pamięci lokalnej. Działa tylko, gdy dostawca dopuszcza CORS. Używaj klucza z niskim limitem.
+Przeglądarka woła dostawcę sama (dla Claude wybierz „Claude (Anthropic)”, adres zostaw pusty; kod wysyła wymagany nagłówek dla wywołań z przeglądarki), a klucz leży w jej pamięci lokalnej. Działa tylko, gdy dostawca dopuszcza CORS. Używaj klucza z niskim limitem.
 
 ## Czego nie sprawdziłem
 

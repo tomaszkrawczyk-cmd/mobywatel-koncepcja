@@ -3,6 +3,7 @@
 //
 // Zmienne (wrangler.toml / sekrety):
 //   ALLOWED_ORIGIN  – np. https://tomaszkrawczyk-cmd.github.io (wymagane; inne źródła dostają 403)
+//   LLM_PROVIDER    – 'anthropic' (natywne API Claude) albo puste (format OpenAI)
 //   LLM_BASE        – adres zgodny z OpenAI, bez końcowego /chat/completions (np. dostawca z darmowym planem)
 //   LLM_MODEL       – nazwa modelu u dostawcy
 //   LLM_KEY         – sekret: wrangler secret put LLM_KEY
@@ -44,6 +45,17 @@ async function callLLM(env, messages, max) {
   if (env.AI) {
     const r = await env.AI.run(env.LLM_MODEL, { messages, max_tokens: max });
     return String(r.response || r.result || '');
+  }
+  if (env.LLM_PROVIDER === 'anthropic') {
+    const sys = messages.find(m => m.role === 'system')?.content || '';
+    const r = await fetch((env.LLM_BASE || 'https://api.anthropic.com').replace(/\/$/, '') + '/v1/messages', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', 'x-api-key': env.LLM_KEY, 'anthropic-version': '2023-06-01' },
+      body: JSON.stringify({ model: env.LLM_MODEL, max_tokens: max, temperature: 0.2, system: sys, messages: messages.filter(m => m.role !== 'system') })
+    });
+    if (!r.ok) throw new Error('llm ' + r.status);
+    const j = await r.json();
+    return String((j.content || []).filter(c => c.type === 'text').map(c => c.text).join(''));
   }
   const r = await fetch(env.LLM_BASE.replace(/\/$/, '') + '/chat/completions', {
     method: 'POST',
