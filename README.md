@@ -72,3 +72,17 @@ Statyczna strona: `index.html`, `style.css`, `app.js` (v1–v2), `v3.js` (v3), `
 - Daty wejścia w życie bezpłatności A2 dla pojazdów lekkich nie ustalono. Stan prawny sprawdź w GDDKiA i na etoll.gov.pl.
 - Przedłużenie recepty bez badania to decyzja lekarza; prototyp tylko pokazuje ścieżkę.
 - Scenariusze „dostałem pismo” i „zgłaszam zdarzenie” korzystają z istniejących modułów; nie przebudowano ich w v7.1.
+
+## v8 – persony i asystent jako główne wejście
+
+- **Osoby w pokazie:** Anna (Warszawa), Piotr (Kraków, firma), Halina (Lublin, nauczycielka, opieka nad mamą), Kuba (Gdańsk, student). Przełącznik na ekranie startowym i w menu bocznym zmienia dane, terminy, recepty, pisma i listę „Do załatwienia”.
+- **Asystent:** pole „Co chcesz załatwić?” na ekranie startowym (głos i tekst), wyszukiwanie rozmyte po całym katalogu usług, przyciski w rozmowie. Scenariusze dokończone w rozmowie: zgubiony portfel (zastrzeżenie po potwierdzeniu twarzą – symulacja) i odnowienie OC.
+- **Nowe sprawy:** OC z porównaniem ofert, mandat i punkty karne, prognoza emerytury (wzór uproszczony), dane jednym skanem (wybór pól, historia udostępnień), upoważnienia (w tym recepty bliskiej osoby).
+- Wszystko z v3–v7 zostało i działa. Opis do formularza konkursowego: `ZGLOSZENIE.md`.
+
+### Niepewności (v8)
+
+- Limity punktów karnych i skutki odmowy przyjęcia mandatu zależą od przepisów i kategorii kierowcy – w prototypie przykładowe.
+- Prognoza emerytury to wzór poglądowy (składka emerytalna 19,52%, przykładowa długość życia), nie prognoza ZUS.
+- Upoważnienie do odbioru recept i spraw zdrowotnych wymaga podstawy prawnej – koncepcja.
+- Porównywarka OC i wykorzystanie historii ubezpieczeniowej wymagają umów i zgód.
