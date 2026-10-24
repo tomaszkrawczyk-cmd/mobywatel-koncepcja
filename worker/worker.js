@@ -45,7 +45,7 @@ async function callLLM(env, messages, max) {
   // Jeśli ustawiono sekret LLM_KEY, a dostawcą jest Claude (domyślnie przy samym kluczu), używamy Claude; w przeciwnym razie Workers AI.
   const claude = env.LLM_KEY && (env.LLM_PROVIDER === 'anthropic' || (!env.LLM_PROVIDER && !env.LLM_BASE));
   if (env.AI && !claude) {
-    const r = await env.AI.run(env.LLM_MODEL, { messages, max_tokens: max });
+    const r = await env.AI.run(env.LLM_MODEL, { messages, max_tokens: Math.max(max, 1500) }); // modele z rozumowaniem zużywają tokeny na myślenie
     return String(r.response ?? r.result?.response ?? r.choices?.[0]?.message?.content ?? (typeof r.result == 'string' ? r.result : ''));
   }
   if (claude) {
@@ -62,7 +62,7 @@ async function callLLM(env, messages, max) {
   const r = await fetch(env.LLM_BASE.replace(/\/$/, '') + '/chat/completions', {
     method: 'POST',
     headers: { 'content-type': 'application/json', authorization: 'Bearer ' + env.LLM_KEY },
-    body: JSON.stringify({ model: env.LLM_MODEL, messages, max_tokens: max, temperature: 0.2 })
+    body: JSON.stringify({ model: env.LLM_MODEL, messages, max_tokens: Math.max(max, 1500), temperature: 0.2 })
   });
   if (!r.ok) throw new Error('llm ' + r.status);
   const j = await r.json();

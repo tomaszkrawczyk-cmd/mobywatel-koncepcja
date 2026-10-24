@@ -23,7 +23,7 @@ Worker zwraca 403 dla obcych źródeł, 413 dla zbyt dużych żądań, 429 po pr
 
 ## Stan wdrożenia (24.10.2026)
 
-Worker `mobywatel-asystent` jest wdrożony na koncie Cloudflare przez konektor i działa na Workers AI (model `@cf/mistralai/mistral-small-3.1-24b-instruct`), bez klucza. **Przejście na Claude:** w panelu Cloudflare (Workers & Pages → mobywatel-asystent → Settings → Variables and Secrets) dodaj sekret `LLM_KEY` z kluczem Anthropic. Worker sam wtedy używa Claude Haiku 5.5. Inny model: zmienna `ANTHROPIC_MODEL` (np. `claude-sonnet-5-5`). Usunięcie sekretu przywraca Workers AI.
+Worker `mobywatel-asystent` jest wdrożony na koncie Cloudflare przez konektor i działa na Workers AI (model `@cf/google/gemma-4-26b-a4b-it`, darmowy plan), bez klucza. Mistral Small 3.1 testowany wcześniej dawał zmyślone szczegóły o Syrenie 26; Gemma 4 odpowiada zgodnie z katalogiem, także w testach po polsku (zapytanie testowe przez API konta, nie w aplikacji). **Przejście na Claude:** w panelu Cloudflare (Workers & Pages → mobywatel-asystent → Settings → Variables and Secrets) dodaj sekret `LLM_KEY` z kluczem Anthropic. Worker sam wtedy używa Claude Haiku 5.5. Inny model: zmienna `ANTHROPIC_MODEL` (np. `claude-sonnet-5-5`). Usunięcie sekretu przywraca Workers AI.
 
 ## Najkrócej: wdrożenie automatyczne (GitHub Actions, wariant zapasowy)
 

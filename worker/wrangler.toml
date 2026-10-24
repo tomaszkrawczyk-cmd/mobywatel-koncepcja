@@ -6,7 +6,7 @@ compatibility_date = "2026-10-01"
 ALLOWED_ORIGIN = "https://tomaszkrawczyk-cmd.github.io"
 
 # --- Wariant 0 (wdrożony): Workers AI, bez zewnętrznego klucza ---
-LLM_MODEL = "@cf/mistralai/mistral-small-3.1-24b-instruct"
+LLM_MODEL = "@cf/google/gemma-4-26b-a4b-it"
 
 # --- Wariant A: Claude (Anthropic) – usuń linię [ai] poniżej, odkomentuj i ustaw sekret LLM_KEY ---
 # LLM_PROVIDER = "anthropic"
