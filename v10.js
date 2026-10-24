@@ -27,9 +27,9 @@ async function aiAssist(q,hit,cards){
  fuzzy(q).forEach(add);if(hit){const f=ALL.find(a=>a[2]==hit[1]);add(f||['','Sprawa',hit[1]])}
  chat.push({r:'a',t:'<span class="muted">🤖 Myślę…</span>'});drawChat();const idx=chat.length-1;
  const P=PERS[S.persona];const hist=chat.slice(-8,-1).map(m=>({k:m.r=='u'?'u':'a',t:redact(String(m.t).replace(/<[^>]+>/g,'')).slice(0,200)}));
- try{const r=await aiCall('chat',{osoba:{wiek:P.age,miasto:P.city},historia:hist,pytanie:redact(q).slice(0,600),kandydaci:cand,scenariusze:Object.entries(AISC).map(([id,v])=>({id,t:v[0]}))});
+ try{const r=await aiCall('chat',{osoba:{wiek:P.age,miasto:P.city},historia:hist,pytanie:redact(q).slice(0,600),kandydaci:cand,scenariusze:Object.entries(AISC).map(([id,v])=>({id,t:v[0]})),katalog:ALL.slice(0,90).map(a=>a[2]+' | '+String(a[1]).slice(0,60)+' | '+String(a[3]||'').slice(0,40))});
   const m={r:'a',t:esc(r.tekst).replace(/\n/g,'<br>')+' <span class="muted">· 🤖 odpowiedź AI, może być niepełna</span>'};const a=r.akcja;
-  if(a&&a.typ=='otworz'&&cand.some(c=>c.id==a.cel)&&/^#\/[\w\-\/]*$/.test(a.cel))m.act=a.cel;
+  if(a&&a.typ=='otworz'&&(cand.some(c=>c.id==a.cel)||ALL.some(x=>x[2]==a.cel))&&/^#\/[\w\-\/]*$/.test(a.cel))m.act=a.cel;
   else if(a&&a.typ=='scenariusz'&&AISC[a.id])m.btns=[['▶ '+AISC[a.id][0],AISC[a.id][1]]];
   chat[idx]=m;drawChat();try{speak(r.tekst)}catch(e){}
  }catch(e){const d=cand.length?'Nie połączyłem się z modelem. Najbliżej pasują:':'Nie połączyłem się z modelem, a w katalogu nic nie pasuje. Opisz to inaczej.';chat[idx]={r:'a',t:d+' <span class="muted">(asystent działa teraz bez AI)</span>',cards:cand.slice(0,3).map(c=>{const f=ALL.find(a=>a[2]==c.id);return f||['🔎',c.t,c.id]})};drawChat()}}
