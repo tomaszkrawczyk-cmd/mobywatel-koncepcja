@@ -86,3 +86,16 @@ Statyczna strona: `index.html`, `style.css`, `app.js` (v1–v2), `v3.js` (v3), `
 - Prognoza emerytury to wzór poglądowy (składka emerytalna 19,52%, przykładowa długość życia), nie prognoza ZUS.
 - Upoważnienie do odbioru recept i spraw zdrowotnych wymaga podstawy prawnej – koncepcja.
 - Porównywarka OC i wykorzystanie historii ubezpieczeniowej wymagają umów i zgód.
+
+## v9 – dane na żywo, firma i KRS, płynne ścieżki w rozmowie
+
+- **Dane na żywo:** KRS (Otwarty API), Biała lista VAT, kursy NBP, Sejm. Brak klucza i serwera. Ekran „Źródła danych” pokazuje stan połączeń. Gdy rejestr jest niedostępny (np. CORS), ekran pokazuje oznaczony przykład. Szczegóły i ograniczenia: `API.md`.
+- **Moja firma:** rozpoczęcie działalności (CEIDG-1), zmiana wpisu, zawieszenie, wznowienie, zakończenie; spółka z o.o. przez S24 (przygotowanie danych); zmiana wpisu w KRS (kreator koncepcyjny); obserwowanie zmian wpisu wybranej spółki.
+- **Rozmowa prowadzi do końca:** „dostałem pismo” (treść → wyjaśnienie → data doręczenia → termin z podstawą → szkic → kalendarz/przypomnienie → wysyłka), „zgłaszam zdarzenie” (rodzaj → bezpieczeństwo → zdjęcie z odciskiem SHA-256 → lokalizacja → opis → adresat → wysyłka → status), „chcę założyć firmę”.
+
+### Niepewności (v9)
+
+- Nie sprawdziłem w żadnym środowisku, czy API KRS i Białej listy odpowiadają przeglądarce (CORS) ani ich dokładnych pól JSON.
+- Terminy i warunki (ulga na start, składki, zawieszenie, zmiana wpisu, terminy podatkowe, kapitał spółki z o.o.) nie są podawane z pamięci – ekrany odsyłają do weryfikacji w przepisach.
+- Przykładowe kody PKD są orientacyjne; prototyp nie zawiera pełnej klasyfikacji ani informacji o koncesjach.
+- Wniosek CEIDG-1 jako jednoczesne zgłoszenie do US, ZUS i GUS opisano według ogólnego opisu usługi – sprawdź aktualne zasady na biznes.gov.pl.
