@@ -42,7 +42,7 @@ Statyczna strona: `index.html`, `style.css`, `app.js` (v1–v2), `v3.js` (v3), `
 - Progi poparcia (10% w gminie i powiecie, 5% w województwie) i 60 dni na zbiórkę przyjęto według art. 4 i art. 14 ustawy o referendum lokalnym w brzmieniu, które stosują komisarze wyborczy. Nowelizacja w druku sejmowym 933 przewidywała 5% / 2,5% i 6 miesięcy – nie ustalono, który reżim obowiązuje.
 - Wzór opłaty w EPU (¼ opłaty stosunkowej) i stawki są uproszczone; sprawdź ustawę o kosztach sądowych w sprawach cywilnych.
 - Zbieranie podpisów pod wnioskiem o referendum ogólnokrajowe w formie elektronicznej to koncepcja de lege ferenda.
-- Skutki sprzeciwu w EPU (przekazanie sprawy sądowi właściwemu, art. 505³⁷ k.p.c.), jego forma i opłata – do sprawdzenia w tekście ustawy i w pouczeniu nakazu.
+- Skutki sprzeciwu w EPU: utrata mocy nakazu w zaskarżonym zakresie i umorzenie EPU w tym zakresie (art. 505³⁶ k.p.c.), skutki nowego pozwu w ciągu 3 miesięcy (art. 505³⁷ § 2) – według recenzji i jednego źródła wtórnego, tekstu Dz.U. nie czytałem. Forma i opłata sprzeciwu – do sprawdzenia w pouczeniu nakazu.
 - Wszystkie sygnatury, osoby, kwoty, komisje wyborcze i daty wyborów są fikcyjne.
 
 ## Nowe w v7
@@ -59,7 +59,7 @@ Statyczna strona: `index.html`, `style.css`, `app.js` (v1–v2), `v3.js` (v3), `
 
 ## v7.1 – poprawki po przeglądzie
 
-- **EPU po sprzeciwie:** nakaz traci moc w całości, a sprawa idzie do sądu właściwości ogólnej (art. 505³⁶ § 1 k.p.c.); powód ma 2 tygodnie na uzupełnienie braków pozwu, inaczej sąd umarza postępowanie (art. 505³⁷). Sprzeciw nie wymaga uzasadnienia ani dowodów (art. 505³⁵), ale zarzuty należy zgłosić od razu. Brzmienie przepisów sprawdzono tylko na stronie wtórnej (e-prawnik.pl) – zweryfikuj w Dz.U.
+- **EPU po sprzeciwie (korekta 2):** skuteczny sprzeciw powoduje utratę mocy nakazu w zaskarżonym zakresie, a sąd umarza EPU w tym zakresie (art. 505³⁶ k.p.c.); sprawa nie jest automatycznie przekazywana. Poprzednia wersja opisywała dawne brzmienie. Do sprzeciwu nie dołącza się dowodów (art. 505³⁵). Tekst przepisów nadal wymaga sprawdzenia w Dz.U.
 - **Bezpieczeństwo kodu:** dane wpisane przez użytkownika (cel podróży) nie trafiają już do atrybutów `onclick`; okna podpisu escapują treść. Poprawiono błąd przerywający wybór lotu przy apostrofie (np. „L'Aquila”).
 - **Zapas leku** jest liczony z liczby sztuk w opakowaniu, dawkowania i daty rozpoczęcia; przedłużać można tylko leki oznaczone jako przyjmowane stale (nie antybiotyk po kuracji). Dodano symulację odpowiedzi lekarza, która wystawia nową e-receptę.
 - **Kody QR** są prawdziwymi kodami QR (biblioteka qrcode-generator, MIT) prowadzącymi do strony „kod demonstracyjny – nieważny”.
