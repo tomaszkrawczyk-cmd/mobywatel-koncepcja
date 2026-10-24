@@ -21,7 +21,11 @@ Plik `worker/worker.js` trzyma klucz w sekrecie, wpuszcza tylko żądania z jedn
 
 Worker zwraca 403 dla obcych źródeł, 413 dla zbyt dużych żądań, 429 po przekroczeniu 12 zapytań na minutę z jednego adresu. Licznik jest w pamięci instancji, więc to ochrona orientacyjna. Na poważnie włącz powiązanie Rate Limiting (`env.RL`), kod już je obsługuje.
 
-## Claude (Anthropic) krok po kroku
+## Najkrócej: wdrożenie automatyczne (GitHub Actions)
+
+Jednorazowo, na stronie repozytorium (Settings → Secrets and variables → Actions → New repository secret) dodaj trzy sekrety: `CLOUDFLARE_API_TOKEN` (Cloudflare → My Profile → API Tokens → szablon „Edit Cloudflare Workers”), `CLOUDFLARE_ACCOUNT_ID` (widoczny w panelu Workers po prawej) i `LLM_KEY` (klucz Anthropic). Potem Actions → „Wdróż asystenta AI” → Run workflow. Workflow wdraża Workera, ustawia klucz i zapisuje jego adres w `ai-config.json`, a aplikacja po odświeżeniu sama włącza AI. Dalsze zmiany w `worker/` wdrażają się same. Warunek: konto Cloudflare ma włączoną domenę workers.dev (przy pierwszym Workerze panel o to pyta). Workflow nie był uruchomiony na prawdziwym koncie.
+
+## Claude (Anthropic) krok po kroku (ręcznie)
 
 1. Konto i klucz: console.anthropic.com, doładuj niewielką kwotę, w ustawieniach ustaw niski limit wydatków, utwórz klucz API (to płatne API, osobne od subskrypcji Claude).
 2. Cloudflare: załóż darmowe konto na cloudflare.com i zainstaluj Node.js.

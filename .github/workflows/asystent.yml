@@ -1,0 +1,38 @@
+name: Wdróż asystenta AI
+# Uruchamiasz ręcznie (Actions → Wdróż asystenta AI → Run workflow) albo automatycznie po zmianie w worker/.
+on:
+  workflow_dispatch:
+  push:
+    paths: ['worker/**']
+permissions:
+  contents: write
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Sprawdź sekrety
+        env:
+          A: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          B: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          C: ${{ secrets.LLM_KEY }}
+        run: |
+          for v in A B C; do [ -n "${!v}" ] || { echo "::error::Brakuje sekretu (CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID lub LLM_KEY) w Settings → Secrets and variables → Actions"; exit 1; }; done
+      - name: Wdróż Worker i ustaw klucz
+        working-directory: worker
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          LLM_KEY: ${{ secrets.LLM_KEY }}
+        run: |
+          npx --yes wrangler@4 deploy 2>&1 | tee ../deploy.log
+          printf '%s' "$LLM_KEY" | npx --yes wrangler@4 secret put LLM_KEY
+          URL=$(grep -oE 'https://[a-zA-Z0-9.-]+\.workers\.dev' ../deploy.log | head -1)
+          [ -n "$URL" ] || { echo "::error::Nie znalazłem adresu Workera w logu (czy konto ma włączoną domenę workers.dev?)"; exit 1; }
+          printf '{"proxy":"%s"}\n' "$URL" > ../ai-config.json
+      - name: Zapisz adres w aplikacji
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@users.noreply.github.com"
+          git add ai-config.json
+          git diff --cached --quiet || { git commit -m "Adres asystenta AI (automatycznie)"; git push; }

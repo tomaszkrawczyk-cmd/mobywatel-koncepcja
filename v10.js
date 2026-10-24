@@ -2,6 +2,8 @@
 // Autor koncepcji: Tomasz Krawczyk – Supplemental. Dane osób są fikcyjne (DEMO). Domyślnie AI jest WYŁĄCZONE – bez konfiguracji asystent działa regułowo, jak dotąd.
 S.v10=S.v10||{mode:'off',proxy:'',direct:{url:'',key:'',model:'',prov:'openai'},n:0};
 const AI_LIMIT=30;
+// Jeśli wdrożono pośrednika, ai-config.json zawiera jego adres i AI włącza się samo (chyba że użytkownik wybrał tryb ręcznie).
+fetch('ai-config.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(c=>{if(c&&/^https:\/\//.test(c.proxy||'')&&!S.v10.manual&&(S.v10.proxy!=c.proxy||S.v10.mode=='off')){S.v10.mode='proxy';S.v10.proxy=c.proxy;save()}}).catch(()=>{});
 const aiCfgOk=()=>S.v10.mode=='proxy'?/^https:\/\//.test(S.v10.proxy):S.v10.mode=='direct'?!!((S.v10.direct.url||S.v10.direct.prov=='anthropic')&&S.v10.direct.model&&S.v10.direct.key):false;
 function aiOn(){return aiCfgOk()&&(S.v10.n||0)<AI_LIMIT}
 // Zanim cokolwiek wyjdzie z przeglądarki, usuwamy typowe dane osobowe (PESEL, NIP, IBAN, telefon, e-mail).
@@ -42,7 +44,7 @@ function aiPage(){const v=S.v10,d=v.direct;
  <input id="aiU" placeholder="${d.prov=='anthropic'?'Adres (puste = https://api.anthropic.com)':'Adres zgodny z OpenAI, np. https://…/v1'}" value="${esc(d.url)}" style="width:100%"><input id="aiM" placeholder="Nazwa modelu" value="${esc(d.model)}" style="width:100%"><input id="aiK" type="password" placeholder="Klucz API" value="${esc(d.key)}" style="width:100%"><button class="btn small" onclick="aiSave()">Zapisz i sprawdź</button><p class="muted">Dostawca musi dopuszczać wywołania z przeglądarki (CORS). Jeśli nie, użyj pośrednika.</p></div>`:''}
  <div class="card"><h3>Prywatność i granice</h3><p class="muted">Do modelu wysyłamy: pytanie (po usunięciu PESEL, NIP, rachunku, telefonu i e-maila), kilka ostatnich wypowiedzi, wiek i miasto wybranej osoby oraz listę możliwych akcji. Nie wysyłamy dokumentów ani danych z portfela. Dane osób w prototypie są fikcyjne. Przy darmowych planach dostawców modeli warunki mogą dopuszczać wykorzystanie treści do ulepszania usługi – sprawdź je przed użyciem z prawdziwymi danymi. Odpowiedzi AI nie są poradą prawną.</p></div>
  <div id="aiRes"></div><a class="btn ghost" href="#/assistant">Przejdź do asystenta</a>`)}
-function aiMode(k){S.v10.mode=k;save();aiPage()}
+function aiMode(k){S.v10.mode=k;S.v10.manual=true;save();aiPage()}
 async function aiSave(){const v=S.v10;if(v.mode=='proxy')v.proxy=($('#aiPx').value||'').trim();else v.direct={prov:v.direct.prov||'openai',url:($('#aiU').value||'').trim(),model:($('#aiM').value||'').trim(),key:($('#aiK').value||'').trim()};save();
  const o=$('#aiRes');if(!aiCfgOk()){o.innerHTML='<div class="alert r">⚠️<div>Uzupełnij pola (adres pośrednika musi zaczynać się od https://).</div></div>';return}
  o.innerHTML='<p class="muted">Sprawdzam połączenie…</p>';try{const r=await aiCall('ping',{});o.innerHTML=`<div class="alert g">✅<div>Połączono. Odpowiedź modelu: „${esc(r.tekst.slice(0,40))}”.</div></div>`}catch(e){o.innerHTML=`<div class="alert r">⚠️<div>Brak połączenia (${esc(e.message)}). Częste przyczyny: zły adres, brak zgody CORS (w pośredniku sprawdź ALLOWED_ORIGIN), limit dostawcy, zły klucz lub nazwa modelu.</div></div>`}}
