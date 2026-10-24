@@ -1,0 +1,14 @@
+name = "mobywatel-asystent"
+main = "worker.js"
+compatibility_date = "2026-10-01"
+
+[vars]
+ALLOWED_ORIGIN = "https://tomaszkrawczyk-cmd.github.io"
+# Wybierz jednego dostawcę zgodnego z OpenAI (sprawdź aktualny adres i nazwę modelu w jego dokumentacji):
+LLM_BASE = "https://generativelanguage.googleapis.com/v1beta/openai"
+LLM_MODEL = "WPISZ-NAZWE-MODELU"
+# Klucz: npx wrangler secret put LLM_KEY
+
+# Alternatywa bez zewnętrznego klucza (Workers AI) – odkomentuj i ustaw LLM_MODEL na model Workers AI:
+# [ai]
+# binding = "AI"

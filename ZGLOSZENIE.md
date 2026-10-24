@@ -25,3 +25,6 @@ Uczciwie o granicach: to koncepcja. Zakup biletów, polis OC i autostrad wymaga 
 Technologie: strona statyczna bez logowania. Asystent działa offline na regułach i wyszukiwaniu rozmytym, a po wpisaniu adresu może korzystać z polskiego modelu zgodnego z API OpenAI (Bielik, PLLuM). Kody QR w prototypie są demonstracyjne i nieważne poza nim.
 
 Autor: Tomasz Krawczyk, Supplemental.
+
+
+Uzupełnienie (v9–v10): firma (CEIDG, KRS, S24) w jednej ścieżce rozmowy; dane na żywo z KRS, Białej listy VAT i NBP z jawnym oznaczeniem danych przykładowych; opcjonalny prawdziwy model językowy, który tylko proponuje akcje, a użytkownik je zatwierdza (klucz w pośredniku, maskowanie danych osobowych, limit zapytań).

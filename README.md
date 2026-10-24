@@ -99,3 +99,10 @@ Statyczna strona: `index.html`, `style.css`, `app.js` (v1–v2), `v3.js` (v3), `
 - Terminy i warunki (ulga na start, składki, zawieszenie, zmiana wpisu, terminy podatkowe, kapitał spółki z o.o.) nie są podawane z pamięci – ekrany odsyłają do weryfikacji w przepisach.
 - Przykładowe kody PKD są orientacyjne; prototyp nie zawiera pełnej klasyfikacji ani informacji o koncesjach.
 - Wniosek CEIDG-1 jako jednoczesne zgłoszenie do US, ZUS i GUS opisano według ogólnego opisu usługi – sprawdź aktualne zasady na biznes.gov.pl.
+
+
+## v10 – prawdziwy asystent AI
+
+Opcjonalny model językowy w rozmowie (strona `#/ai`, opis w ASYSTENT.md). Model rozumie swobodne pytania i proponuje przejście do sprawy, ale każdą akcję zatwierdza użytkownik. Klucz może leżeć w pośredniku `worker/worker.js` (Cloudflare Worker). Dane osobowe są maskowane przed wysłaniem, jest limit zapytań, a bez konfiguracji nic się nie zmienia.
+
+Niepewności: nie testowałem żadnego prawdziwego modelu ani wdrożonego Workera; jakość po polsku, format JSON, limity i warunki wykorzystania danych w darmowych planach dostawców są niesprawdzone.

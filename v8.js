@@ -60,7 +60,7 @@ async function ask2(q){q=(q||'').trim();if(!q)return;if($('#q'))$('#q').value=''
  const hit=INT.find(([re])=>re.test(q.toLowerCase()));
  let t=hit?hit[2]:null,cards=null;
  if(!hit){cards=fuzzy(q);t=cards.length?'Nie jestem pewien, o którą sprawę chodzi. Najbliżej pasują:':'Nie znalazłem takiej sprawy w katalogu. Mogę pomóc m.in. w: pismach i terminach, zgłoszeniach, receptach, biletach, OC, mandatach, wyborach i sprawach sądowych. Opisz to inaczej albo otwórz <a href="#/guide">przewodnik</a>.';if(!cards.length)cards=null}
- if(S.llm.url&&typeof llm=='function'){try{t=await llm(`Jesteś asystentem aplikacji mObywatel (prototyp DEMO). Rozmawiasz z osobą: ${PERS[S.persona].full}, ${PERS[S.persona].age} lat, ${PERS[S.persona].city}. Odpowiadaj krótko, prostym polskim, w 2–3 zdaniach. Niczego nie wykonujesz bez potwierdzenia użytkownika. Nie wymyślaj przepisów.`,q)}catch(e){t+=' <span class="muted">(model niedostępny – odpowiedź offline)</span>'}}
+ if(window.aiOn&&aiOn()&&(!hit||q.split(/\s+/).length>6))return aiAssist(q,hit,cards);
  chat.push({r:'a',t:t+(hit?'<br><b>Czy chcesz kontynuować?</b>':''),act:hit?hit[1]:null,cards});drawChat();try{speak(String(t).replace(/<[^>]+>/g,''))}catch(e){}}
 ask=ask2;
 function homeAsk(v){v=(v||'').trim();if(!v)return;location.hash='#/assistant';setTimeout(()=>ask(v),200)}
