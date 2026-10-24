@@ -28,3 +28,6 @@ Autor: Tomasz Krawczyk, Supplemental.
 
 
 Uzupełnienie (v9–v10): firma (CEIDG, KRS, S24) w jednej ścieżce rozmowy; dane na żywo z KRS, Białej listy VAT i NBP z jawnym oznaczeniem danych przykładowych; opcjonalny prawdziwy model językowy, który tylko proponuje akcje, a użytkownik je zatwierdza (klucz w pośredniku, maskowanie danych osobowych, limit zapytań).
+
+
+Uzupełnienie (v11): karta „Moje zdrowie” – kod wizyty z zakresem udostępnienia (tylko to, co trzeba, na 5 minut, z historią dostępu), karta ratunkowa, ukryte wpisy wrażliwe, szkice zgłoszeń rozbieżności z adresatem i podstawą prawną, zgłaszanie działań niepożądanych z odesłaniem do URPL, wybór drogi „Gdzie z tym iść?” oraz informacja o kosztach świadczeń bez salda „wpłaciłem – dostałem” (system jest solidarnościowy). Wszystko jest symulacją na danych fikcyjnych; karta ma być widokiem na dane z Internetowego Konta Pacjenta, a nie nowym rejestrem. Niepewności: źródło danych o kolejkach SOR, integracja poczekalni, dostęp rodzica do danych nastolatka 16–17 lat.

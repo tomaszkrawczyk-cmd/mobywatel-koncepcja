@@ -106,3 +106,25 @@ Statyczna strona: `index.html`, `style.css`, `app.js` (v1–v2), `v3.js` (v3), `
 Opcjonalny model językowy w rozmowie (strona `#/ai`, opis w ASYSTENT.md). Model rozumie swobodne pytania i proponuje przejście do sprawy, ale każdą akcję zatwierdza użytkownik. Klucz może leżeć w pośredniku `worker/worker.js` (Cloudflare Worker). Dane osobowe są maskowane przed wysłaniem, jest limit zapytań, a bez konfiguracji nic się nie zmienia.
 
 Niepewności: nie testowałem żadnego prawdziwego modelu ani wdrożonego Workera; jakość po polsku, format JSON, limity i warunki wykorzystania danych w darmowych planach dostawców są niesprawdzone.
+
+## v11 – „Moje zdrowie” (karta zdrowia)
+
+Moduł `#/zdrowie` (plik `v11.js`). Inspiracją były pomysły z publicznych dyskusji o karcie zdrowia w mObywatelu, m.in. prototyp zarobkilekarzy.pl (historia wizyt, działania niepożądane, kolejka, SOR, koszty). Kod i rozwiązania są własne i różnią się od tamtego projektu.
+
+Co dodaje ten prototyp od siebie:
+- **Kod wizyty z zakresem udostępnienia**: tożsamość i prawo do świadczeń zawsze, resztę (leki, alergie, wyniki) zaznaczasz świadomie, na 5 minut. Każdy odczyt trafia do historii dostępu.
+- **Karta ratunkowa** (grupa krwi, alergie, leki stałe, kontakt) domyślnie wyłączona, włączana świadomie.
+- **Wrażliwe wpisy ukryte** domyślnie, odkrywane po potwierdzeniu twarzą, z wpisem do historii dostępu.
+- **„Coś się nie zgadza”**: zamiast gołego zgłoszenia – szkic z adresatem (NFZ, placówka, Rzecznik Praw Pacjenta) i podstawą prawną tam, gdzie wynika wprost z przepisu (art. 26 ust. 1 ustawy o prawach pacjenta i Rzeczniku Praw Pacjenta – dostęp do dokumentacji). Nic nie jest wysyłane.
+- **Działania niepożądane**: notatka lokalna i odesłanie do URPL, z ostrzeżeniem „dzwoń 112” przy objawach ciężkich.
+- **„Gdzie z tym iść?”**: wybór drogi (112 / nocna opieka / SOR / POZ), bez diagnozy.
+- **Koszty bez fałszywego salda**: wartość świadczeń sfinansowanych przez NFZ jako informacja; świadomie nie pokazujemy „wpłaciłem – dostałem”, bo system jest solidarnościowy.
+- **Eksport** danych jako uproszczony plik FHIR R4 (JSON, demonstracyjny).
+
+### Niepewności (v11)
+- Założenie, że karta jest widokiem na dane z Internetowego Konta Pacjenta, jest założeniem koncepcji, nie ustalonym faktem.
+- Kolejki SOR są danymi przykładowymi z jawnym oznaczeniem. Nie zakładamy istnienia źródła danych na żywo.
+- Wirtualna poczekalnia wymaga integracji placówki. To symulacja.
+- Dostęp rodzica do danych nastolatka (16–17 lat) wymaga analizy prawnej (m.in. art. 32 ustawy o zawodach lekarza i lekarza dentysty). Do weryfikacji w aktualnym tekście.
+- Linki prowadzą do stron głównych instytucji (URPL, NFZ, Rzecznik Praw Pacjenta, pacjent.gov.pl). Adresy podstron mogą się zmieniać.
+- Kwoty i wyniki badań są fikcyjne. Normy laboratoryjne są przykładowe.
