@@ -21,7 +21,11 @@ Plik `worker/worker.js` trzyma klucz w sekrecie, wpuszcza tylko żądania z jedn
 
 Worker zwraca 403 dla obcych źródeł, 413 dla zbyt dużych żądań, 429 po przekroczeniu 12 zapytań na minutę z jednego adresu. Licznik jest w pamięci instancji, więc to ochrona orientacyjna. Na poważnie włącz powiązanie Rate Limiting (`env.RL`), kod już je obsługuje.
 
-## Najkrócej: wdrożenie automatyczne (GitHub Actions)
+## Stan wdrożenia (24.10.2026)
+
+Worker `mobywatel-asystent` jest wdrożony na koncie Cloudflare przez konektor i działa na Workers AI (model `@cf/mistralai/mistral-small-3.1-24b-instruct`), bez klucza. **Przejście na Claude:** w panelu Cloudflare (Workers & Pages → mobywatel-asystent → Settings → Variables and Secrets) dodaj sekret `LLM_KEY` z kluczem Anthropic. Worker sam wtedy używa Claude Haiku 5.5. Inny model: zmienna `ANTHROPIC_MODEL` (np. `claude-sonnet-5-5`). Usunięcie sekretu przywraca Workers AI.
+
+## Najkrócej: wdrożenie automatyczne (GitHub Actions, wariant zapasowy)
 
 Jednorazowo, na stronie repozytorium (Settings → Secrets and variables → Actions → New repository secret) dodaj trzy sekrety: `CLOUDFLARE_API_TOKEN` (Cloudflare → My Profile → API Tokens → szablon „Edit Cloudflare Workers”), `CLOUDFLARE_ACCOUNT_ID` (widoczny w panelu Workers po prawej) i `LLM_KEY` (klucz Anthropic). Potem Actions → „Wdróż asystenta AI” → Run workflow. Workflow wdraża Workera, ustawia klucz i zapisuje jego adres w `ai-config.json`, a aplikacja po odświeżeniu sama włącza AI. Dalsze zmiany w `worker/` wdrażają się same. Warunek: konto Cloudflare ma włączoną domenę workers.dev (przy pierwszym Workerze panel o to pyta). Workflow nie był uruchomiony na prawdziwym koncie.
 

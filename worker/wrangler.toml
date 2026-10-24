@@ -22,3 +22,5 @@ LLM_MODEL = "@cf/mistralai/mistral-small-3.1-24b-instruct"
 
 [ai]
 binding = "AI"
+
+# Przejście na Claude: wystarczy sekret LLM_KEY (npx wrangler secret put LLM_KEY lub panel). Model: zmienna ANTHROPIC_MODEL (domyślnie claude-haiku-5-5).

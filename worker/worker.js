@@ -42,16 +42,18 @@ async function limited(req, env) {
 }
 
 async function callLLM(env, messages, max) {
-  if (env.AI) {
+  // Jeśli ustawiono sekret LLM_KEY, a dostawcą jest Claude (domyślnie przy samym kluczu), używamy Claude; w przeciwnym razie Workers AI.
+  const claude = env.LLM_KEY && (env.LLM_PROVIDER === 'anthropic' || (!env.LLM_PROVIDER && !env.LLM_BASE));
+  if (env.AI && !claude) {
     const r = await env.AI.run(env.LLM_MODEL, { messages, max_tokens: max });
     return String(r.response ?? r.result?.response ?? r.choices?.[0]?.message?.content ?? (typeof r.result == 'string' ? r.result : ''));
   }
-  if (env.LLM_PROVIDER === 'anthropic') {
+  if (claude) {
     const sys = messages.find(m => m.role === 'system')?.content || '';
     const r = await fetch((env.LLM_BASE || 'https://api.anthropic.com').replace(/\/$/, '') + '/v1/messages', {
       method: 'POST',
       headers: { 'content-type': 'application/json', 'x-api-key': env.LLM_KEY, 'anthropic-version': '2023-06-01' },
-      body: JSON.stringify({ model: env.LLM_MODEL, max_tokens: max, temperature: 0.2, system: sys, messages: messages.filter(m => m.role !== 'system') })
+      body: JSON.stringify({ model: env.ANTHROPIC_MODEL || 'claude-haiku-5-5', max_tokens: max, temperature: 0.2, system: sys, messages: messages.filter(m => m.role !== 'system') })
     });
     if (!r.ok) throw new Error('llm ' + r.status);
     const j = await r.json();
