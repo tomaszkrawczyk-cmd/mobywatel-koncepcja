@@ -4,9 +4,9 @@ S.v8=S.v8||{oc:{},mandat:{st:'do zapłaty'},log:[],upow:{in:{},out:{}},rxStore:{
 S.persona=S.persona||'anna';
 const PERS={
  anna:{name:'Anna',full:'Anna Kowalska',age:35,city:'Warszawa',bio:'Mama trójki dzieci, pracuje na etacie.',addr:'ul. Przykładowa 12/4, 00-001 Warszawa',
-  todo:[['🚗','OC Octavii kończy się za 11 dni','#/oc',1],['📩','Pismo z urzędu skarbowego – sprawdź termin','#/explain',0],['💊','Atorwastatyna: zapas do 13.11','#/recepty',0]],
+  todo:[['🚗','OC Corolli kończy się za 12 dni','#/oc',1],['📩','Pismo z urzędu skarbowego – sprawdź termin','#/explain',0],['💊','Atorwastatyna: zapas do 13.11','#/recepty',0]],
   chips:['Zgubiłem portfel','Kończy się OC','Dziecko się urodziło'],
-  veh:[['WX 12345','Škoda Octavia','2026-11-03',780]],
+  veh:[['WX 12345','Toyota Corolla','2026-11-04',780]],
   sample:'Naczelnik Urzędu Skarbowego Warszawa-Mokotów wzywa do złożenia korekty zeznania PIT-37 za 2025 r. w terminie 14 dni od dnia doręczenia niniejszego wezwania.',rem:null},
  piotr:{name:'Piotr',full:'Piotr Malinowski',age:43,city:'Kraków',bio:'Prowadzi firmę transportową, dwa auta i bus.',addr:'ul. Floriańska 8, 31-021 Kraków',
   todo:[['📩','Wezwanie z urzędu skarbowego (VAT) – termin 7 dni','#/explain',1],['🚐','OC busa kończy się 12.11','#/oc',1],['🚫','PESEL zastrzeżony – kredyt na auto','#/flow/pesel',0]],
@@ -26,7 +26,7 @@ const PERS={
   veh:[],
   sample:'Komendant Straży Miejskiej w Gdańsku informuje o nałożeniu mandatu karnego kredytowanego za przekroczenie prędkości. Od mandatu można odmówić przyjęcia w dniu wystawienia.',
   rem:[{t:'Zapłata mandatu',d:'2026-10-30',i:'🚦',a:'#/mandat'},{t:'Wybory – zmiana miejsca głosowania',d:'2027-10-10',i:'🗳️',a:'#/flow/miejsce'}]}};
-const REM_ANNA=REM.filter(x=>!/Polisa OC/.test(x.t));REM_ANNA.push({t:'OC Octavii (WX 12345)',d:'2026-11-03',i:'🚗',a:'#/oc'});REM_ANNA.sort((a,b)=>a.d.localeCompare(b.d));if(S.persona=='anna'){REM.length=0;REM.push(...REM_ANNA)}
+const REM_ANNA=REM.filter(x=>!/Polisa OC/.test(x.t));REM_ANNA.push({t:'OC Corolli (WX 12345)',d:'2026-11-04',i:'🚗',a:'#/oc'});REM_ANNA.sort((a,b)=>a.d.localeCompare(b.d));if(S.persona=='anna'){REM.length=0;REM.push(...REM_ANNA)}
 const RX0={anna:null,piotr:[],halina:[{id:11,lek:'Bisoprolol 5 mg, 28 tabl.',dawka:'1 tabl. rano',kod:'2604',do:'2027-01-05',st:'aktywna',stale:true,szt:28,dz:1,start:'2026-10-15'}],kuba:[]};
 function applyPersona(k,boot){const o=S.persona;const P=PERS[k];if(!P)return;
  if(!boot){S.v8.rxStore[o]=S.v7.rx;S.v8.przStore[o]=S.v7.prz;S.v7.rx=S.v8.rxStore[k]||(RX0[k]===null?S.v8.rxStore.anna||S.v7.rx:RX0[k].map(x=>Object.assign({},x)));S.v7.prz=S.v8.przStore[k]||[]}
@@ -125,7 +125,7 @@ F.upowaz={t:'Nadanie upoważnienia',i:'🤝',steps:[{h:'Kogo i do czego upoważn
 // ---------- INTEGRACJA ----------
 const _expl8=explain;explain=function(){_expl8();const t=$('#ex');if(t)t.value=PERS[S.persona].sample};
 ALL.push(['🚗','OC – porównanie ofert i odnowienie','#/oc','oc polisa ubezpieczenie samochód auto bus odnowienie ufg'],['🚦','Mandaty i punkty karne','#/mandat','mandat punkty karne grzywna straż miejska policja prędkość'],['📈','Prognoza emerytury','#/emerytura','emerytura zus kapitał składki prognoza'],['📲','Dane jednym skanem','#/skan','udostępnij dane skan qr wypożyczalnia hotel 18+ wiek'],['🤝','Upoważnienia – działam w imieniu bliskiej osoby','#/upowaz','upoważnienie pełnomocnik mama opieka recepty w imieniu']);
-INT.unshift([/mandat|punkt\w* karn|fotoradar|straż miejsk/,'#/mandat','Pokażę mandat, punkty karne i pomogę zapłacić albo odwołać się.'],[/emerytur|prognoz\w* zus/,'#/emerytura','Policzę orientacyjną emeryturę z Twoich założeń; oficjalną prognozę wylicza ZUS.'],[/udostęp\w* dane|pokaż dane|wypożyczaln|skan\w* /,'#/skan','Udostępnisz odbiorcy tylko wybrane dane jednym skanem kodu, na 5 minut.'],[/upoważ|w imieniu|recepty (mamy|taty|dziecka)/,'#/upowaz','Pokażę upoważnienia: sprawy, które załatwiasz za bliską osobę, i osoby, które mogą działać za Ciebie.']);
+INT.unshift([/mandat|punkt[a-ząćęłńóśźż]* karn|fotoradar|straż miejsk/,'#/mandat','Pokażę mandat, punkty karne i pomogę zapłacić albo odwołać się.'],[/emerytur|prognoz\w* zus/,'#/emerytura','Policzę orientacyjną emeryturę z Twoich założeń; oficjalną prognozę wylicza ZUS.'],[/udostęp\w* dane|pokaż dane|wypożyczaln|skan\w* /,'#/skan','Udostępnisz odbiorcy tylko wybrane dane jednym skanem kodu, na 5 minut.'],[/upoważ|w imieniu|recepty (mamy|taty|dziecka)/,'#/upowaz','Pokażę upoważnienia: sprawy, które załatwiasz za bliską osobę, i osoby, które mogą działać za Ciebie.']);
 const _more8=more;more=function(){_more8();const g=app.querySelector('.grid');if(g)g.insertAdjacentHTML('afterbegin',[['🚗','OC','#/oc'],['🚦','Mandaty','#/mandat'],['📈','Emerytura','#/emerytura'],['📲','Dane skanem','#/skan'],['🤝','Upoważnienia','#/upowaz']].map(([i,t,h])=>`<button class="tile" onclick="location.hash='${h}'"><b>${i}</b>${t}</button>`).join(''))};
 const _guide8=guide;guide=function(){_guide8();const sc=app.querySelector('.scroll');if(sc)sc.insertAdjacentHTML('afterbegin',card('👤 Osoby w pokazie',Object.entries(PERS).map(([k,p])=>`<div class="row"><span><b>${p.full}</b>, ${p.age}, ${p.city}<br><span class="muted">${p.bio}</span></span><button class="chip" onclick="setPersona('${k}')">${k==S.persona?'✓ aktywna':'wybierz'}</button></div>`).join('')))};
 Object.assign(window,{setPersona,applyPersona,faceId,chatBtn,homeAsk,homeMic,oc,ocBuy,mandat,emerytura,emCalc,skan,skanSim,upowaz,rxPokaz,cofnij,ask:ask2,drawChat,PERS,syncSide});
