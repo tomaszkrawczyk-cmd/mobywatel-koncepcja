@@ -13,6 +13,22 @@
   <p class="muted">Klikalny prototyp – koncepcja konkursowa <b>mObywatel Challenge</b>. Wszystkie dane są fikcyjne (DEMO).</p>
   <p>Wypróbuj:</p>
   <ul class="jump">
+   <li><a href="#/home">🏠 Ekran główny</a></li><li><a href="#/guide">🧭 Przewodnik</a></li>
+   <li class="sep">Cztery typowe sprawy</li>
+   <li><a href="#/explain">📩 Dostałem pismo</a></li><li><a href="#/report">📣 Zgłaszam zdarzenie</a></li><li><a href="#/recepty">💊 Kończy mi się lek</a></li><li><a href="#/agent/przeprowadzka">🧩 Przeprowadzam się</a></li>
+   <li class="sep">Na co dzień</li>
+   <li><a href="#/wallet">🪪 Dokumenty</a></li><li><a href="#/bilety">🎫 Bilety i opłaty</a></li><li><a href="#/health">🩺 Lekarz</a></li><li><a href="#/family">👪 Rodzina</a></li><li><a href="#/money">💳 Płatności</a></li><li><a href="#/studia">🎓 Studia</a></li><li><a href="#/assistant">🤖 Asystent</a></li>
+   <li class="sep">Prawo i urząd</li>
+   <li><a href="#/deadline">⚖️ Terminy</a></li><li><a href="#/appeal">✍️ Kreator pism</a></li><li><a href="#/esad">⚖️ e-Sąd</a></li><li><a href="#/lawai">🤖 Doradca prawny</a></li><li><a href="#/influence">🏛️ Sejm i konsultacje</a></li>
+   <li class="sep">Bezpieczeństwo</li>
+   <li><a href="#/sos">🆘 Cichy SOS</a></li><li><a href="#/c112">💬 112 tekstem</a></li><li><a href="#/cctv">🎥 Monitoring</a></li><li><a href="#/privacy">🔒 Prywatność</a></li><li><a href="#/syrena">📢 Syrena 26 (demo dodatkowe)</a></li>
+   <li class="sep">🔮 Koncepcje przyszłości (wymagają zmiany prawa)</li>
+   <li><a href="#/elections">🗳️ Wybory (w tym pilotaż online)</a></li><li><a href="#/refs">🏘️ Referenda i podpisy online</a></li><li><a href="#/vote">🗳️ e-Głosowanie</a></li>
+   <li class="sep">Wszystko pozostałe</li>
+   <li><a href="#/all">🔍 Wszystkie usługi</a></li>
+  </ul>
+  <details><summary>Pełna lista z historii wersji</summary>
+  <ul class="jump">
    <li><a href="#/home">🏠 Ekran główny</a></li><li><a href="#/wallet">🪪 Dokumenty</a></li>
    <li><a href="#/flow/wallet">👛 Zgubiony portfel</a></li><li><a href="#/flow/meldunek">🏡 Meldunek</a></li>
    <li><a href="#/flow/dowod">🆔 Nowy dowód</a></li><li><a href="#/flow/auto">🚗 Rejestracja auta</a></li>
@@ -25,6 +41,7 @@
    <li class="sep">Nowe w v4</li><li><a href="#/all">🔍 Wszystkie usługi</a></li><li><a href="#/agent/przeprowadzka">🧩 Agent spraw</a></li><li><a href="#/syrena">📢 Syrena 26</a></li><li><a href="#/family">👪 Rodzina i dzieci</a></li><li><a href="#/plan">🧭 Plan rodzinny</a></li><li><a href="#/health">🩺 Lekarz i czat</a></li><li><a href="#/law">⚖️ Sądy i rejestry</a></li><li><a href="#/lawai">🤖 Doradca prawny AI</a></li><li><a href="#/appeal/pozew">📄 Pozew</a></li><li><a href="#/explain">📩 Wyjaśnij pismo</a></li><li><a href="#/social">🤝 Pomoc społeczna</a></li><li><a href="#/flow/budowa">🏗️ Pozwolenie na budowę</a></li><li><a href="#/energy">⚡ Taryfa prądu</a></li><li><a href="#/travel">🚆 Bilet PKP</a></li><li><a href="#/tech">🛠️ Pomoc cyfrowa</a></li><li><a href="#/mail">✉️ Adres i e-mail</a></li><li><a href="#/alerts">🔔 Alerty</a></li>
    <li class="sep">Nowe w v7</li><li><a href="#/guide">🧭 Przewodnik</a></li><li><a href="#/recepty">💊 e-Recepty</a></li><li><a href="#/bilety">🎫 Bilety i opłaty</a></li><li class="sep">Nowe w v6</li><li><a href="#/esad">⚖️ e-Sąd (EPU)</a></li><li><a href="#/elections">🗳️ Wybory powszechne</a></li><li><a href="#/refs">🏘️ Referenda</a></li><li class="sep">Nowe w v5</li><li><a href="#/edu">🎓 Edukacja / Studia</a></li><li><a href="#/matura">📜 e-Matura</a></li><li><a href="#/deklaracja">📝 Deklaracja maturalna</a></li><li><a href="#/studia">🏫 Rekrutacja na studia</a></li><li><a href="#/kalkulator">🧮 Kalkulator punktów</a></li><li><a href="#/zgloszenia">📊 Moje zgłoszenia</a></li><li><a href="#/pltech">🇵🇱 Polskie technologie</a></li>
   </ul>
+  </details>
   <button class="btn ghost small" onclick="resetDemo()">Resetuj demo</button>
  </aside>
  <div class="phone"><div class="notch"></div>
@@ -33,7 +50,7 @@
 </div>
 <footer class="foot">Koncepcja konkursowa mObywatel Challenge, nie jest oficjalną aplikacją. Wszystkie dane, alerty i mapy zagrożeń są symulowane (DEMO).</footer>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="app.js"></script>
+<script src="qrcode.js"></script><script src="app.js"></script>
 <script src="v3.js"></script>
 <script src="v4.js"></script>
 <script src="v5.js"></script><script src="v6.js"></script><script src="v7.js"></script></body></html>

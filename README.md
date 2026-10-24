@@ -56,3 +56,19 @@ Statyczna strona: `index.html`, `style.css`, `app.js` (v1–v2), `v3.js` (v3), `
 - Zakup przejazdu autostradą z góry wymaga umów z operatorami odcinków; zasady płatności na A1, A2 i A4 oraz zakres e-TOLL (pojazdy ciężkie, autobusy) należy sprawdzić w aktualnych przepisach.
 - Sprzedaż biletów lotniczych i komunikacji miejskiej wymaga interfejsów partnerskich przewoźników i organizatorów transportu; prototyp tego nie zakłada.
 - Opis przedłużania recept jest uproszczony: o wystawieniu recepty decyduje lekarz.
+
+## v7.1 – poprawki po przeglądzie
+
+- **EPU po sprzeciwie:** nakaz traci moc w całości, a sprawa idzie do sądu właściwości ogólnej (art. 505³⁶ § 1 k.p.c.); powód ma 2 tygodnie na uzupełnienie braków pozwu, inaczej sąd umarza postępowanie (art. 505³⁷). Sprzeciw nie wymaga uzasadnienia ani dowodów (art. 505³⁵), ale zarzuty należy zgłosić od razu. Brzmienie przepisów sprawdzono tylko na stronie wtórnej (e-prawnik.pl) – zweryfikuj w Dz.U.
+- **Bezpieczeństwo kodu:** dane wpisane przez użytkownika (cel podróży) nie trafiają już do atrybutów `onclick`; okna podpisu escapują treść. Poprawiono błąd przerywający wybór lotu przy apostrofie (np. „L'Aquila”).
+- **Zapas leku** jest liczony z liczby sztuk w opakowaniu, dawkowania i daty rozpoczęcia; przedłużać można tylko leki oznaczone jako przyjmowane stale (nie antybiotyk po kuracji). Dodano symulację odpowiedzi lekarza, która wystawia nową e-receptę.
+- **Kody QR** są prawdziwymi kodami QR (biblioteka qrcode-generator, MIT) prowadzącymi do strony „kod demonstracyjny – nieważny”.
+- **A2 Konin–Stryków** jest bezpłatny dla pojazdów do 3,5 t (źródło: cuk.pl, stan na 10.04.2026); pojazdy cięższe rozliczają się w e-TOLL. Ceny A4 i A1 nadal przykładowe.
+- **Rozpoznawanie intencji:** konkretna sprawa („pomoc prawna”) ma pierwszeństwo przed ogólną propozycją wycieczki.
+- **Nawigacja:** ekran główny ma wyszukiwarkę, terminy i sześć wejść do sytuacji życiowych; menu boczne jest pogrupowane według spraw, a historia wersji została zwinięta. E-głosowanie i podpisy referendalne oznaczono jako „koncepcje przyszłości”. Czas demonstracji (23.10.2026) jest jawnie opisany.
+
+### Niepewności (v7.1)
+
+- Daty wejścia w życie bezpłatności A2 dla pojazdów lekkich nie ustalono. Stan prawny sprawdź w GDDKiA i na etoll.gov.pl.
+- Przedłużenie recepty bez badania to decyzja lekarza; prototyp tylko pokazuje ścieżkę.
+- Scenariusze „dostałem pismo” i „zgłaszam zdarzenie” korzystają z istniejących modułów; nie przebudowano ich w v7.1.
