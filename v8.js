@@ -29,7 +29,7 @@ const PERS={
 const REM_ANNA=REM.filter(x=>!/Polisa OC/.test(x.t));REM_ANNA.push({t:'OC Corolli (WX 12345)',d:'2026-11-04',i:'🚗',a:'#/oc'});REM_ANNA.sort((a,b)=>a.d.localeCompare(b.d));if(S.persona=='anna'){REM.length=0;REM.push(...REM_ANNA)}
 const RX0={anna:null,piotr:[],halina:[{id:11,lek:'Bisoprolol 5 mg, 28 tabl.',dawka:'1 tabl. rano',kod:'2604',do:'2027-01-05',st:'aktywna',stale:true,szt:28,dz:1,start:'2026-10-15'}],kuba:[]};
 function applyPersona(k,boot){const o=S.persona;const P=PERS[k];if(!P)return;
- if(!boot){S.v8.rxStore[o]=S.v7.rx;S.v8.przStore[o]=S.v7.prz;S.v7.rx=S.v8.rxStore[k]||(RX0[k]===null?S.v8.rxStore.anna||S.v7.rx:RX0[k].map(x=>Object.assign({},x)));S.v7.prz=S.v8.przStore[k]||[]}
+ if(!boot){S.v8.casesStore=S.v8.casesStore||{};S.v8.casesStore[o]=S.cases;S.cases=S.v8.casesStore[k]||[];S.v8.rxStore[o]=S.v7.rx;S.v8.przStore[o]=S.v7.prz;S.v7.rx=S.v8.rxStore[k]||(RX0[k]===null?S.v8.rxStore.anna||S.v7.rx:RX0[k].map(x=>Object.assign({},x)));S.v7.prz=S.v8.przStore[k]||[]}
  S.persona=k;Object.assign(U,{name:P.name,full:P.full,addr:P.addr});
  REM.length=0;REM.push(...(P.rem?P.rem:REM_ANNA));REM.sort((a,b)=>a.d.localeCompare(b.d));save()}
 function setPersona(k){if(k==S.persona)return;applyPersona(k);toast('Zalogowano jako '+PERS[k].full+' (DEMO)');location.hash='#/home';route();syncSide()}

@@ -3,7 +3,7 @@
 S.v10=S.v10||{mode:'off',proxy:'',direct:{url:'',key:'',model:'',prov:'openai'},n:0};
 const AI_LIMIT=30;
 // Jeśli wdrożono pośrednika, ai-config.json zawiera jego adres i AI włącza się samo (chyba że użytkownik wybrał tryb ręcznie).
-fetch('ai-config.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(c=>{if(c&&/^https:\/\//.test(c.proxy||'')&&!S.v10.manual&&(S.v10.proxy!=c.proxy||S.v10.mode=='off')){S.v10.mode='proxy';S.v10.proxy=c.proxy;save()}}).catch(()=>{});
+fetch('ai-config.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(c=>{if(c&&/^https:\/\//.test(c.proxy||'')&&!S.v10.manual&&!S.v10.proxy){S.v10.proxy=c.proxy;save()}}).catch(()=>{});
 const aiCfgOk=()=>S.v10.mode=='proxy'?/^https:\/\//.test(S.v10.proxy):S.v10.mode=='direct'?!!((S.v10.direct.url||S.v10.direct.prov=='anthropic')&&S.v10.direct.model&&S.v10.direct.key):false;
 function aiOn(){return aiCfgOk()&&(S.v10.n||0)<AI_LIMIT}
 // Zanim cokolwiek wyjdzie z przeglądarki, usuwamy typowe dane osobowe (PESEL, NIP, IBAN, telefon, e-mail).
@@ -35,7 +35,7 @@ async function aiAssist(q,hit,cards){
  }catch(e){const d=cand.length?'Nie połączyłem się z modelem. Najbliżej pasują:':'Nie połączyłem się z modelem, a w katalogu nic nie pasuje. Opisz to inaczej.';chat[idx]={r:'a',t:d+' <span class="muted">(asystent działa teraz bez AI)</span>',cards:cand.slice(0,3).map(c=>{const f=ALL.find(a=>a[2]==c.id);return f||['🔎',c.t,c.id]})};drawChat()}}
 // ---------- Strona konfiguracji ----------
 function aiPage(){const v=S.v10,d=v.direct;
- shell('🤖 Asystent AI',`<div class="alert b">🤖<div><b>Prawdziwy model językowy w rozmowie.</b> Domyślnie wyłączony. Model rozumie swobodne pytania, ale <b>niczego nie wykonuje sam</b>: może tylko zaproponować przejście do sprawy, a Ty zatwierdzasz przyciskiem. Reguły, ścieżki rozmowy i podpisywanie działają jak dotąd.</div></div>
+ shell('🤖 Asystent AI',`<div class="alert b">🤖<div><b>Prawdziwy model językowy w rozmowie.</b> Domyślnie wyłączony i <b>nie włącza się sam</b>. Po włączeniu pytania trafiają do modelu: przez serwer proxy w Cloudflare (model Workers AI albo Claude – zależnie od konfiguracji) i dalej do dostawcy modelu. Nie wpisuj prawdziwych nazwisk, adresów, danych zdrowotnych ani spraw sądowych – filtr usuwa tylko numery i kontakty. Model rozumie swobodne pytania, ale <b>niczego nie wykonuje sam</b>: może tylko zaproponować przejście do sprawy, a Ty zatwierdzasz przyciskiem. Reguły, ścieżki rozmowy i podpisywanie działają jak dotąd.</div></div>
  <div class="card"><h3>Tryb</h3><div class="chips">${[['off','Wyłączony'],['proxy','Przez pośrednika (zalecany)'],['direct','Bezpośrednio (tylko test)']].map(([k,l])=>`<button class="chip ${v.mode==k?'on':''}" style="${v.mode==k?'background:var(--blue,#1f4fbf);color:#fff':''}" onclick="aiMode('${k}')">${l}</button>`).join('')}</div>
  <p class="muted">Zużycie w tej sesji: <b>${v.n||0}</b> z ${AI_LIMIT} zapytań. Limit chroni przed przypadkowym kosztem; „Zeruj” odnawia go.</p><button class="btn ghost small" onclick="S.v10.n=0;save();aiPage()">Zeruj licznik</button></div>
  ${v.mode=='proxy'?`<div class="card"><h3>Pośrednik (Cloudflare Worker)</h3><p class="muted">Klucz do modelu leży w sekretach Workera, nie w przeglądarce. Instrukcja: ASYSTENT.md w repozytorium.</p><input id="aiPx" placeholder="https://mobywatel-asystent.twoja-domena.workers.dev" value="${esc(v.proxy)}" style="width:100%"><button class="btn small" onclick="aiSave()">Zapisz i sprawdź</button></div>`:''}
