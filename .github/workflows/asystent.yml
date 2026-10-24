@@ -1,9 +1,7 @@
 name: Wdróż asystenta AI
-# Uruchamiasz ręcznie (Actions → Wdróż asystenta AI → Run workflow) albo automatycznie po zmianie w worker/.
+# Wariant zapasowy: uruchamiasz ręcznie (Actions → Run workflow). Worker jest już wdrożony przez konektor Cloudflare.
 on:
   workflow_dispatch:
-  push:
-    paths: ['worker/**']
 permissions:
   contents: write
 jobs:
