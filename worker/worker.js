@@ -44,7 +44,7 @@ async function limited(req, env) {
 async function callLLM(env, messages, max) {
   if (env.AI) {
     const r = await env.AI.run(env.LLM_MODEL, { messages, max_tokens: max });
-    return String(r.response || r.result || '');
+    return String(r.response ?? r.result?.response ?? r.choices?.[0]?.message?.content ?? (typeof r.result == 'string' ? r.result : ''));
   }
   if (env.LLM_PROVIDER === 'anthropic') {
     const sys = messages.find(m => m.role === 'system')?.content || '';

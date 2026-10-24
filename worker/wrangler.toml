@@ -5,10 +5,13 @@ compatibility_date = "2026-10-01"
 [vars]
 ALLOWED_ORIGIN = "https://tomaszkrawczyk-cmd.github.io"
 
-# --- Wariant A: Claude (Anthropic) – domyślny w tej konfiguracji ---
-LLM_PROVIDER = "anthropic"
-LLM_BASE = "https://api.anthropic.com"
-LLM_MODEL = "claude-haiku-5-5"   # lepsza polszczyzna, drożej: claude-sonnet-5-5
+# --- Wariant 0 (wdrożony): Workers AI, bez zewnętrznego klucza ---
+LLM_MODEL = "@cf/mistralai/mistral-small-3.1-24b-instruct"
+
+# --- Wariant A: Claude (Anthropic) – usuń linię [ai] poniżej, odkomentuj i ustaw sekret LLM_KEY ---
+# LLM_PROVIDER = "anthropic"
+# LLM_BASE = "https://api.anthropic.com"
+# LLM_MODEL = "claude-haiku-5-5"   # lepsza polszczyzna, drożej: claude-sonnet-5-5
 
 # --- Wariant B: dostawca zgodny z OpenAI (np. Gemini z darmowym planem) ---
 # usuń LLM_PROVIDER i ustaw:
@@ -16,3 +19,6 @@ LLM_MODEL = "claude-haiku-5-5"   # lepsza polszczyzna, drożej: claude-sonnet-5-
 # LLM_MODEL = "<nazwa modelu z dokumentacji dostawcy>"
 
 # Klucz (sekret, nie wpisuj go tutaj): npx wrangler secret put LLM_KEY
+
+[ai]
+binding = "AI"
