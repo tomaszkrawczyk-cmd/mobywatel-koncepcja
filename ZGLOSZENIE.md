@@ -1,33 +1,55 @@
-# Opis zgłoszenia – mObywatel 3.0 (do formularza konkursowego)
+# Zgłoszenie – mObywatel 3.0 (teksty do wklejenia w formularz)
 
-Tytuł: mObywatel 3.0 – asystent, który doprowadza sprawę do końca
+Link do prototypu (działa bez logowania, sprawdzone w oknie prywatnym): https://tomaszkrawczyk-cmd.github.io/mobywatel-koncepcja/
 
-Link do prototypu (działa bez logowania): https://tomaszkrawczyk-cmd.github.io/mobywatel-koncepcja/
+Dodatkowy link (repozytorium): https://github.com/tomaszkrawczyk-cmd/mobywatel-koncepcja
 
-Opis:
+## Pole: Tytuł
 
-Pomysł jest prosty. Obywatel mówi lub pisze, co chce załatwić, a aplikacja prowadzi go do końca: sprawdza dane w rejestrach, pokazuje termin z podstawą, przygotowuje pismo i prosi o jedno potwierdzenie. Nic nie wysyła bez zgody. Wszystko jest symulacją na fikcyjnych danych.
+mObywatel 3.0 – asystent, który doprowadza sprawę do końca
 
-Prototyp pokazuje to na czterech osobach z różnymi sprawami: matce trójki dzieci z Warszawy, przedsiębiorcy z Krakowa, nauczycielce z Lublina opiekującej się mamą i studencie z Gdańska. Przełączasz osobę jednym dotknięciem i widzisz inny ekran startowy, inne terminy, inne recepty i inne pisma.
+## Pole: Opis (3018 znaków, limit 4000)
 
-Cztery typowe sprawy, od których warto zacząć:
-1. Dostałem pismo i nie wiem, co zrobić. Aplikacja tłumaczy je prostym językiem, liczy termin z przesunięciem na dzień roboczy, układa szkic odpowiedzi i wskazuje właściwy kanał.
-2. Zgubiłem portfel. W rozmowie z asystentem jednym potwierdzeniem zastrzegasz dowód i prawo jazdy (System Dokumenty Zastrzeżone obejmuje dokumenty tożsamości), a do banku trafia prośba o blokadę kart (DEMO); aplikacja przypomina też ogólnopolski numer zastrzegania kart 828 828 828.
-3. Kończy mi się lek. Aplikacja liczy zapas z opakowania i dawkowania, prosi lekarza o przedłużenie leku stałego, pokazuje kod do apteki i dostępność.
-4. Przeprowadzam się. Agent układa plan formalności i wykorzystuje wspólne dane, a każdy krok zatwierdzasz osobno.
+Problem: sprawy urzędowe są rozproszone, a człowiek nie wie, od czego zacząć. Dostaje pismo i nie rozumie terminu, gubi portfel i nie wie, co zastrzec, opiekuje się mamą lub dzieckiem i musi logować się w pięciu miejscach. Dla kogo: dla każdego, ale w szczególności dla osób starszych, rodziców i osób, które boją się urzędu.
 
-Co jeszcze jest w środku, w tym samym prostym schemacie „opisz sprawę i potwierdź”: kupno OC z porównaniem ofert, mandat i punkty karne, prognoza emerytury, udostępnianie danych jednym skanem tylko w potrzebnym zakresie (np. samo „18+”), upoważnienia dla bliskich, e-recepty, bilety komunikacji miejskiej, pociągów i lotów, e-Sąd (pozew i sprzeciw w postępowaniu upominawczym), zgłoszenia ze zdjęciem lub nagraniem i odciskiem czasu, Cichy SOS, 112 tekstem, śledzenie prac Sejmu i uwagi do projektów, wybory (lokal, zmiana miejsca, głosowanie korespondencyjne, pełnomocnik) oraz Syrena 26.
+Rozwiązanie: mówisz albo piszesz, co chcesz załatwić, a aplikacja prowadzi Cię do końca. Sprawdza dane w rejestrach, pokazuje termin z podstawą prawną, przygotowuje pismo i prosi o jedno potwierdzenie. Nic nie wysyła bez Twojej zgody. Prototyp pokazuje to na czterech fikcyjnych osobach (matka trójki dzieci, przedsiębiorca, nauczycielka opiekująca się mamą, student) – każda ma inny ekran startowy, terminy i sprawy.
 
-Dostępność i prostota: ekran startowy ma jedno pole „Co chcesz załatwić?” z głosem, trzy sprawy osoby i katalog w przewodniku, który pokazuje usługi według sytuacji życiowych. Głos, duże elementy i prosty język są standardem, a nie dodatkiem.
+Cztery sprawy od początku do końca:
+1. Dostałem pismo: wyjaśnienie prostym językiem, termin z przesunięciem na dzień roboczy, szkic odpowiedzi i właściwy kanał.
+2. Zgubiłem portfel: w aplikacji zastrzegasz dowód osobisty, paszport i prawo jazdy (System Dokumenty Zastrzeżone); karty, dowód rejestracyjny i legitymację – przekierowanie do banku i numeru 828 828 828.
+3. Kończy mi się lek: zapas liczony z dawkowania, prośba o przedłużenie recepty, kod do apteki.
+4. Przeprowadzam się: plan formalności, a każdy krok zatwierdzasz osobno.
 
-Uczciwie o granicach: to koncepcja. Zakup biletów, polis OC i autostrad wymaga umów z przewoźnikami, ubezpieczycielami i operatorami. Głosowanie przez internet w wyborach powszechnych nie jest dziś dopuszczone, więc występuje jako wyraźnie oznaczony pilotaż. Elektroniczne podpisy pod wnioskiem o referendum wymagają zmiany prawa, a głosowanie przez internet w referendum ogólnokrajowym jest pokazane jako pilotaż, który wymaga zmiany prawa. Progi i terminy referendum lokalnego oraz skutki sprzeciwu w EPU są oznaczone jako do weryfikacji z aktualnym tekstem ustaw. Ceny, osoby, sygnatury i rozkłady są przykładowe.
+Moje zdrowie: karta zdrowia jako widok na Internetowe Konto Pacjenta – kod wizyty z zakresem, udostępnienie lekarzowi na 24 h z możliwością cofnięcia i historią dostępu, karta ratunkowa, ukrywanie wpisów wrażliwych. Wyraźnie: AI nie diagnozuje.
 
-Technologie: strona statyczna bez logowania. Asystent działa offline na regułach i wyszukiwaniu rozmytym. Po włączeniu w ustawieniach AI pytania, do których nie pasuje żaden scenariusz, trafia do modelu Gemma 4 (Google, otwarte wagi) uruchomionego w Cloudflare Workers AI przez naszego pośrednika; asystent pokazuje, który model działa. Pośrednik jest gotowy do podmiany na polski model zgodny z API OpenAI (Bielik, PLLuM), ale w prototypie żaden z nich dziś nie działa. Kody QR w prototypie są demonstracyjne i nieważne poza nim.
+Bezpieczeństwo: „Potwierdź umowę w mObywatelu” – pożyczka, abonament czy polisa zawierane online lub przez telefon wymagają potwierdzenia w aplikacji, inaczej są blokowane (rozszerzenie zastrzeżenia PESEL). Do tego Cichy SOS, 112 tekstem, „Czy to oszustwo?” i rejestr „kto sprawdzał moje dane”.
+
+Wpływ obywatela: śledzenie Sejmu, uwagi do konkretnych przepisów, petycje, „Zamrażarka” – wskazujesz, którymi zaległymi projektami Sejm ma zająć się najpierw (sygnał, nie wiąże Marszałka). Głosowanie przez internet pokazane jako pilotaż: tylko dla chętnych, możliwość ponownego głosu, głos w lokalu ma pierwszeństwo.
+
+Dostępność: jedno pole „Co chcesz załatwić?” z głosem, tryb seniora (duży tekst, czytanie na głos), wysoki kontrast, prosty język, katalog usług według sytuacji życiowych.
+
+Uczciwie o granicach: to koncepcja na fikcyjnych danych. Zakupy biletów i polis wymagają umów z firmami, a e-głosowanie, e-podpisy pod referendum i potwierdzanie umów – zmiany prawa. Kody QR są demonstracyjne.
+
+Technologie: strona statyczna bez logowania; asystent działa bez modelu AI na scenariuszach i wyszukiwaniu rozmytym w przeglądarce. Opcjonalnie pytania spoza scenariuszy trafiają do modelu językowego przez nasz serwer pośredniczący – dziś jest to Gemma (Google, otwarte wagi) w Cloudflare Workers AI, a aplikacja pokazuje nazwę modelu podaną przez serwer. Pośrednik jest zgodny z API OpenAI i gotowy do podłączenia polskich modeli Bielik lub PLLuM; dziś żaden z nich nie działa w prototypie.
+
+## Pole: Polskie modele i technologie
+
+Asystent jest przygotowany pod polskie modele językowe: pośrednik w Cloudflare jest zgodny z API OpenAI, a w ustawieniach są gotowe profile Bielik 11B (SpeakLeash) i PLLuM (konsorcjum HIVE AI / NASK). Uczciwie: dziś na żywo działa Gemma (Google, otwarte wagi) w Cloudflare Workers AI, a aplikacja pokazuje nazwę modelu podaną przez serwer – Bielik i PLLuM nie są jeszcze uruchomione. Koncepcyjnie opisujemy też basal (modele decyzyjne Remigiusza Kinasa, na bazie Bielika) do rozpoznawania intencji oraz Zeccer (polska sieć samoobsługowych punktów druku) do drukowania pism. Prototyp nie jest powiązany z autorami tych rozwiązań.
+
+## Prototyp referencyjny → Nasza wersja
+
+Porównanie dotyczy założeń prototypu referencyjnego opisanych na mobywatel.ai (wersja w przeglądarce: sprawy załatwiane rozmową, rozmowy to przygotowane scenariusze). Nie oceniamy każdego ekranu – pokazujemy, co dodajemy.
+
+| Obszar | Prototyp referencyjny | Nasza wersja |
+|---|---|---|
+| Sposób załatwiania spraw | Rozmowa z asystentem | Rozmowa albo klasyczne ekrany – do wyboru; każda akcja wymaga potwierdzenia |
+| Asystent w przeglądarce | Przygotowane scenariusze | Scenariusze + wyszukiwanie rozmyte offline; opcjonalnie prawdziwy model z jawną nazwą, gotowy na Bielika / PLLuM |
+| Różni użytkownicy | Pokaz na przykładowych sprawach | Cztery osoby z różnymi ekranami startowymi, terminami i sprawami (rodzic, przedsiębiorca, opiekunka seniorki, student) |
+| Dostępność | – | Tryb seniora, czytanie na głos, wysoki kontrast, prosty język, katalog wg sytuacji życiowych |
+| Prywatność | – | Rejestr „kto sprawdzał moje dane”, udostępnianie tylko potrzebnego zakresu (np. „18+”), dostęp lekarza na 24 h z cofnięciem |
+| Bezpieczeństwo | – | Zastrzeżenie dokumentów zgodne z usługą „Zastrzeż dokument”, „Potwierdź umowę w mObywatelu”, Cichy SOS, 112 tekstem |
+| Wpływ obywatela | – | Sejm na żywo, uwagi do przepisów, petycje, „Zamrażarka”, e-głosowanie jako oznaczony pilotaż z zabezpieczeniami |
+
+(„–” oznacza obszar, którego nie porównywaliśmy szczegółowo.)
 
 Autor: Tomasz Krawczyk, Supplemental.
-
-
-Uzupełnienie (v9–v10): firma (CEIDG, KRS, S24) w jednej ścieżce rozmowy; dane na żywo z KRS, Białej listy VAT i NBP z jawnym oznaczeniem danych przykładowych; opcjonalny prawdziwy model językowy, który tylko proponuje akcje, a użytkownik je zatwierdza (klucz w pośredniku, maskowanie danych osobowych, limit zapytań).
-
-
-Uzupełnienie (v11): karta „Moje zdrowie” – kod wizyty z zakresem udostępnienia (tylko to, co trzeba, na 5 minut, z historią dostępu), karta ratunkowa, ukryte wpisy wrażliwe, szkice zgłoszeń rozbieżności z adresatem i podstawą prawną, zgłaszanie działań niepożądanych z odesłaniem do URPL, wybór drogi „Gdzie z tym iść?” oraz informacja o kosztach świadczeń bez salda „wpłaciłem – dostałem” (system jest solidarnościowy). Wszystko jest symulacją na danych fikcyjnych; karta ma być widokiem na dane z Internetowego Konta Pacjenta, a nie nowym rejestrem. Niepewności: źródło danych o kolejkach SOR, integracja poczekalni, dostęp rodzica do danych nastolatka 16–17 lat.

@@ -69,6 +69,14 @@ async function callLLM(env, messages, max) {
   return String(j.choices?.[0]?.message?.content || '');
 }
 
+// Nazwa modelu, który faktycznie odpowiada – zwracana w polu `model`, żeby aplikacja nie pokazywała nazwy na sztywno.
+function modelName(env) {
+  const claude = env.LLM_KEY && (env.LLM_PROVIDER === 'anthropic' || (!env.LLM_PROVIDER && !env.LLM_BASE));
+  if (env.AI && !claude) return String(env.LLM_MODEL || 'workers-ai');
+  if (claude) return String(env.ANTHROPIC_MODEL || 'claude-haiku-5-5');
+  return String(env.LLM_MODEL || 'nieznany');
+}
+
 function parseJson(s) {
   s = s.replace(/```json|```/g, '').trim();
   const a = s.indexOf('{'), b = s.lastIndexOf('}');
@@ -102,9 +110,9 @@ export default {
       const out = await callLLM(env, [{ role: 'system', content: T.sys }, { role: 'user', content: user }], T.max);
       if (T.json) {
         const p = parseJson(out);
-        return json(p && typeof p.tekst === 'string' ? { tekst: p.tekst.slice(0, 1200), akcja: p.akcja || null } : { tekst: out.slice(0, 1200), akcja: null }, 200, h);
+        return json(p && typeof p.tekst === 'string' ? { tekst: p.tekst.slice(0, 1200), akcja: p.akcja || null, model: modelName(env) } : { tekst: out.slice(0, 1200), akcja: null, model: modelName(env) }, 200, h);
       }
-      return json({ tekst: out.slice(0, 2500) }, 200, h);
+      return json({ tekst: out.slice(0, 2500), model: modelName(env) }, 200, h);
     } catch (e) {
       return json({ error: 'upstream' }, 502, h);
     }
