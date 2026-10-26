@@ -5,24 +5,24 @@
 (()=>{
 S.v11=Object.assign({who:'anna',tab:'karta',sens:false,scope:{leki:false,alergie:false,wyniki:false},nop:[],log:[],ice:false,num:null},S.v11||{});
 const fd=d=>new Date(d).toLocaleDateString('pl-PL');
-const ZHP={anna:{n:'Anna Kowalska',w:'dorosła'},jan:{n:'Jan Kowalski',w:'8 lat'},zofia:{n:'Zofia Kowalska',w:'3 lata'},stas:{n:'Staś Kowalski',w:'16 lat'},piotr:{n:'Piotr Malinowski',w:'dorosły'},halina:{n:'Halina Wrona',w:'dorosła'},kuba:{n:'Jakub Lis',w:'dorosły'}};
-const ZHKIDS={anna:['jan','zofia','stas']};
+const ZHP={anna:{n:'Anna Kowalska',w:'dorosła'},jan:{n:'Jan Kowalski',w:'8 lat'},zofia:{n:'Zofia Kowalska',w:'3 lata'},jakub:{n:'Jakub Kowalski',w:'16 lat'},piotr:{n:'Piotr Malinowski',w:'dorosły'},halina:{n:'Halina Wrona',w:'dorosła'},kuba:{n:'Jakub Lis',w:'dorosły'}};
+const ZHKIDS={anna:['jan','zofia','jakub']};
 const ZHV={
  anna:[{d:'2026-10-09',p:'Przychodnia POZ „Mokotów” (DEMO)',t:'Porada lekarza POZ',nfz:68},{d:'2026-09-22',p:'Poradnia kardiologiczna, Szpital Bielański (DEMO)',t:'Porada kardiologiczna',nfz:142},{d:'2026-08-05',p:'Poradnia zdrowia psychicznego (DEMO)',t:'Porada specjalistyczna',nfz:150,sens:true}],
  jan:[{d:'2026-10-02',p:'Przychodnia POZ „Mokotów” (DEMO)',t:'Porada lekarza POZ',nfz:68}],
  zofia:[{d:'2026-09-15',p:'Przychodnia POZ „Mokotów” (DEMO)',t:'Bilans zdrowia dziecka',nfz:96}],
- stas:[{d:'2026-06-20',p:'Przychodnia POZ „Mokotów” (DEMO)',t:'Porada lekarza POZ',nfz:68}],
+ jakub:[{d:'2026-06-20',p:'Przychodnia POZ „Mokotów” (DEMO)',t:'Porada lekarza POZ',nfz:68}],
  piotr:[{d:'2026-09-30',p:'Medycyna pracy – kierowcy, Kraków (DEMO)',t:'Badanie kierowcy zawodowego',nfz:0},{d:'2026-07-11',p:'Przychodnia POZ „Kazimierz” (DEMO)',t:'Porada lekarza POZ',nfz:68}],
  halina:[{d:'2026-10-05',p:'Przychodnia POZ „Czuby”, Lublin (DEMO)',t:'Porada lekarza POZ',nfz:68},{d:'2026-08-19',p:'Poradnia okulistyczna, SPSK1 Lublin (DEMO)',t:'Porada okulistyczna',nfz:120}],
  kuba:[{d:'2026-05-14',p:'Akademickie Centrum Medyczne, Gdańsk (DEMO)',t:'Porada lekarza POZ',nfz:68}]};
 const ZHB={
  anna:[{d:'2026-09-22',n:'Cholesterol LDL',w:'128 mg/dl',r:'norma laboratorium: poniżej 115 mg/dl (DEMO)',out:true},{d:'2026-09-22',n:'TSH',w:'2,1 mIU/l',r:'norma laboratorium: 0,4–4,0 mIU/l (DEMO)'},{d:'2026-09-22',n:'Hemoglobina',w:'13,2 g/dl',r:'norma laboratorium: 12–16 g/dl (DEMO)'}],
- jan:[{d:'2026-10-02',n:'Morfologia',w:'bez odchyleń',r:'(DEMO)'}],zofia:[],stas:[],piotr:[{d:'2026-09-30',n:'Glukoza na czczo',w:'94 mg/dl',r:'norma laboratorium: 70–99 mg/dl (DEMO)'}],halina:[{d:'2026-10-05',n:'Ciśnienie tętnicze (pomiar)',w:'142/88 mmHg',r:'zalecane: poniżej 140/90 mmHg (DEMO)',out:true}],kuba:[]};
+ jan:[{d:'2026-10-02',n:'Morfologia',w:'bez odchyleń',r:'(DEMO)'}],zofia:[],jakub:[],piotr:[{d:'2026-09-30',n:'Glukoza na czczo',w:'94 mg/dl',r:'norma laboratorium: 70–99 mg/dl (DEMO)'}],halina:[{d:'2026-10-05',n:'Ciśnienie tętnicze (pomiar)',w:'142/88 mmHg',r:'zalecane: poniżej 140/90 mmHg (DEMO)',out:true}],kuba:[]};
 const ZHI={
  anna:{krew:'A Rh+ (DEMO)',alergie:['penicylina'],leki:['Atorwastatyna 20 mg','Euthyrox 50 µg'],kont:'Tomasz Kowalski (mąż) +48 600 000 000'},
  jan:{krew:'0 Rh+ (DEMO)',alergie:[],leki:[],kont:'Anna Kowalska (mama) +48 600 000 001'},
  zofia:{krew:'A Rh+ (DEMO)',alergie:[],leki:[],kont:'Anna Kowalska (mama) +48 600 000 001'},
- stas:{krew:'0 Rh+ (DEMO)',alergie:[],leki:[],kont:'Anna Kowalska (mama) +48 600 000 001'},
+ jakub:{krew:'0 Rh+ (DEMO)',alergie:[],leki:[],kont:'Anna Kowalska (mama) +48 600 000 001'},
  piotr:{krew:'B Rh+ (DEMO)',alergie:[],leki:[],kont:'Ewa Malinowska (żona) +48 600 000 002'},
  halina:{krew:'0 Rh- (DEMO)',alergie:['pyłki traw'],leki:['Bisoprolol 5 mg'],kont:'Marek Wrona (syn) +48 600 000 003'},
  kuba:{krew:'AB Rh+ (DEMO)',alergie:['orzeszki ziemne'],leki:[],kont:'Barbara Lis (mama) +48 600 000 004'}};
@@ -38,7 +38,7 @@ const stamp=()=>new Date().toLocaleString('pl-PL',{dateStyle:'short',timeStyle:'
 const logAdd=(who,co,po)=>{S.v11.log.unshift([stamp(),who,co,po]);S.v11.log=S.v11.log.slice(0,20)};
 
 function zdrowie(){
- const me=ZHP[S.persona]?S.persona:'anna',fam=[me].concat(ZHKIDS[me]||[]);if(S.v11.who=='jakub')S.v11.who='stas';if(!fam.includes(S.v11.who))S.v11.who=me;
+ const me=ZHP[S.persona]?S.persona:'anna',fam=[me].concat(ZHKIDS[me]||[]);if(!fam.includes(S.v11.who))S.v11.who=me;
  const v=S.v11,p=ZHP[v.who];
  const tabs=[['karta','🪪 Karta'],['wizyty','📅 Wizyty'],['badania','🧪 Badania'],['leki','💊 Leki'],['gdzie','🧭 Gdzie iść'],['koszty','🧾 Koszty'],['prywatnosc','🔒 Prywatność']];
  const T={karta:tKarta,wizyty:tWizyty,badania:tBadania,leki:tLeki,gdzie:tGdzie,koszty:tKoszty,prywatnosc:tPryw};
