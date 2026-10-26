@@ -53,3 +53,6 @@ Porównanie dotyczy założeń prototypu referencyjnego opisanych na mobywatel.a
 („–” oznacza obszar, którego nie porównywaliśmy szczegółowo.)
 
 Autor: Tomasz Krawczyk, Supplemental.
+
+### v19
+Pogrupowane „Więcej” z wyszukiwarką; jedna nazwa „Asystent” i „Pełnomocnik”; Gemma domyślnie z rezerwą reguły → Bielik offline; duży mikrofon uruchamiający sprawy; tryb seniora na starcie; „Kto sprawdzał moje dane?” (dane DEMO, zgłoszenie nieuprawnionego dostępu); potwierdzenie PIN-em/biometrią (DEMO); „Przeprowadzam się” krok po kroku; przerwane zgłoszenie w czacie można wznowić lub porzucić.

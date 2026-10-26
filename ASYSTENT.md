@@ -100,3 +100,6 @@ Przy pierwszym automatycznym pobieraniu (model nie jest jeszcze w pamięci przeg
 - **Trzy główne sprawy, jedna ścieżka:** `#/sprawa/pismo`, `#/sprawa/zdarzenie`, `#/sprawa/lek` (4 kroki, podsumowanie przed podpisem). Ekrany boczne (Wyjaśnij pismo, Zgłoś, formularze straży/policji, Recepty) pokazują te same 4 kroki i prowadzą do jednej ścieżki.
 - **Skrót pliku:** pełny SHA-256, opisany jako „skrót pliku w tym urządzeniu; nie potwierdza czasu ani pochodzenia; plik nie jest zapisywany w demo”.
 - **Osoby w pokazie:** historia rozmowy, pisma, zgłoszenia, podpisy, głosy, udostępnienia i inne dane spraw są przechowywane osobno dla każdej osoby (sprawy i recepty były rozdzielone już wcześniej).
+
+## v19 – jeden przełącznik
+Asystent online (Gemma) jest domyślnie włączony. Gdy Gemma nie odpowie, odpowiadają reguły w telefonie, a gdy reguły nie wystarczą – Bielik 1.5B offline (jeśli pobrany i gotowy). W czacie widać tylko chip „☁️ online” / „📴 działa offline” (szczegóły po dotknięciu) oraz „Pobierz / Pauzuj Bielika”. Inne modele (Bielik 11B, PLLuM) są w „Zaawansowane”. Głos (pl-PL) od razu uruchamia rozpoznaną sprawę.

@@ -129,7 +129,7 @@ ask=async function(q){q=(q||'').trim();if(!q)return;const l=norm(q);
    if(!d||isNaN(d))return say('Nie rozpoznałem daty. Wpisz np. <b>20.10.2026</b> albo użyj przycisków.');return pDate(d)}
   if(CH.flow=='zd'&&CH.step=='lok'){CH.d.addr=q;return zOpis()}
   if(CH.flow=='zd'&&CH.step=='opis')return zSum(q);
-  return say('Jesteśmy w trakcie zgłoszenia – skorzystaj z przycisków albo napisz „anuluj”.')}
+  {const was=CH.flow,st=CH.step,d=CH.d;CH.flow=null;say('Odłożyłem rozpoczęte '+(was=='pismo'?'pismo':'zgłoszenie')+' (nic nie wysłano) i odpowiadam na nowe pytanie.',{btns:[['↩ Wróć do '+(was=='pismo'?'pisma':'zgłoszenia'),()=>{CH.flow=was;CH.step=st;CH.d=d;say('Wracamy – skorzystaj z przycisków powyżej albo odpowiedz na ostatnie pytanie.')}]]})}}
  if(/zgubi|portfel/.test(l))return _ask8(q);
  if(/dostal\w* (pismo|decyzj|wezwani|nakaz)|mam (pismo|wezwani|decyzj)|nie wiem co (z|zrobic z) (tym )?pism|pismo z (urzedu|sadu|us)|nakaz zaplaty/.test(l)){chUser(q);return pStart()}
  if(/zglas?zam|zglosic (zdarz|wypad|kolizj|kradziez|wlaman|wykrocz)|mialem (kolizj|wypad)|miala? kolizj|wypadek|kolizj|wlaman|ukradli|wandal|dziur\w+ w drodze/.test(l)){chUser(q);return zStart()}
