@@ -35,7 +35,7 @@ async function callLocal(task,p){const g=await loadLocal(pr=>{const e=document.g
  const o=await g([{role:'system',content:AIB0},{role:'user',content:q}],{max_new_tokens:180,do_sample:false});const m=o[0].generated_text;const c=Array.isArray(m)?m[m.length-1].content:String(m);
  if(!String(c||'').trim())throw new Error('empty');return{tekst:c.trim(),akcja:null}}
 async function callGemma(task,p){const u=proxy();if(!/^https:\/\//.test(u))throw new Error('no proxy');const ac=new AbortController();const to=setTimeout(()=>ac.abort(),45000);
- try{const r=await fetch(u.replace(/\/$/,''),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({task,...p}),signal:ac.signal});if(!r.ok)throw new Error('HTTP '+r.status);const j=await r.json();if(j.error||!String(j.tekst||'').trim())throw new Error(j.error||'empty');return{tekst:String(j.tekst),akcja:j.akcja||null,model:j.model}}finally{clearTimeout(to)}}
+ try{const r=await fetch(u.replace(/\/$/,''),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({task,...p}),signal:ac.signal});if(!r.ok)throw new Error('HTTP '+r.status);const j=await r.json();if(j.error||!String(j.tekst||'').trim())throw new Error(j.error||'empty');if(j.model&&S.v13){S.v13.model=String(j.model).slice(0,80);save()}return{tekst:String(j.tekst),akcja:j.akcja||null,model:j.model}}finally{clearTimeout(to)}}
 const _call=aiCall,_on=aiOn;
 aiOn=function(){return (v.model!='gemma'&&ready())||_on()};window.aiOn=aiOn;
 aiCall=async function(task,p){
