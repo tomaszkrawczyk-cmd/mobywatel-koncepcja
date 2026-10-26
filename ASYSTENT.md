@@ -66,3 +66,10 @@ Klucz API zapisuje się tylko w `localStorage` tej przeglądarki (wpis `mob_ai_k
 Ollama lokalnie: `ollama run SpeakLeash/bielik-11b-v3.0-instruct`, uruchomić serwer z `OLLAMA_ORIGINS=*` (inaczej Ollama odrzuca wywołania ze strony GitHub Pages kodem 403).
 
 Sprawdzone 26.10.2026: Bielik 1.5B (ONNX q4) odpowiada po polsku – w teście na CPU pierwsze uruchomienie ok. 27 s (pobranie i ładowanie), odpowiedź na 80 tokenów ok. 5 s. Darmowe publiczne Space'y z Bielikiem/PLLuM (np. przez Ollamę na HF) działają z serwera, ale blokują wywołania z przeglądarki albo mają wyczerpany limit, więc nie są podłączone. Fabryka AI (`https://fabryka.ai/v1`, `bielik-11b-v3`) ma darmowy plan testowy (10 zapytań dziennie, konto), ale nie obsługuje CORS – wymaga pośrednika.
+
+
+## v15: Bielik pobiera się sam w tle
+
+Po otwarciu aplikacji (gdy przeglądarka jest bezczynna) Bielik 1.5B v3 pobiera się w tle w Web Workerze – interfejs pozostaje płynny – i zapisuje w pamięci podręcznej przeglądarki, więc przy kolejnych wizytach ładuje się szybko. Działa automatycznie tylko na komputerach z WebGPU lub co najmniej 4 GB RAM, bez trybu oszczędzania danych, nie na sieci 2G/3G i nie na telefonach. Ustawienie „Automatycznie pobieraj Bielika w tle” (Asystent AI) pozwala to wyłączyć; `?bielik=1` w adresie wymusza pobieranie (np. na pokaz dla jury), `?bielik=0` je wyłącza.
+
+Mała pigułka „🦅 Bielik pobiera się w tle …%” prowadzi do ustawień. Gdy model jest gotowy, aplikacja pokazuje komunikat i przełącza asystenta na lokalnego Bielika, chyba że użytkownik sam wybrał inny model. Do tego czasu odpowiada Gemma. Jeśli Bielik nie odpowie w 20 s albo zgłosi błąd, odpowiada Gemma, a potem reguły – z plakietką, kto odpowiedział. Bielik dostaje prompt systemowy z podstawowymi faktami (np. dowód osobisty jest bezpłatny, zastrzeżenie PESEL jest bezpłatne, 112, 828 828 828), a gdy wyszukiwarka usług znajdzie pasującą sprawę, pod odpowiedzią zostaje przycisk przejścia do niej. Pytania pasujące do reguł nadal obsługują reguły.
