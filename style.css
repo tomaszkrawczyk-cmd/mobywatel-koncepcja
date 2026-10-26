@@ -24,7 +24,7 @@
 .row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #eef0f4;gap:8px}.row:last-child{border:0}
 .steps{display:flex;gap:4px;margin-bottom:12px}.steps i{flex:1;height:5px;border-radius:3px;background:#dde2ec}.steps i.on{background:var(--red)}
 label{display:block;font-size:.85em;margin:10px 0 4px;color:var(--mut)}input,select,textarea{width:100%;padding:11px;border-radius:10px;border:1.5px solid #cfd6e3;font-size:1em;font-family:inherit}
-.chk{display:flex;gap:10px;align-items:center;padding:8px 0}.chk input{width:22px;height:22px}
+.chk{display:flex;gap:10px;align-items:center;padding:8px 0}.chk input{width:22px;height:22px;flex:0 0 22px;margin:0}
 .chat{display:flex;flex-direction:column;gap:8px}.msg{max-width:85%;padding:10px 12px;border-radius:16px;font-size:.93em;line-height:1.35}.msg.u{align-self:flex-end;background:var(--blue);color:#fff;border-bottom-right-radius:4px}.msg.a{background:#fff;border-bottom-left-radius:4px;box-shadow:0 1px 3px #0001}
 .chips{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.chip{border:1.5px solid var(--blue);color:var(--blue);background:#fff;border-radius:20px;padding:6px 10px;font-size:.8em;cursor:pointer}
 .composer{display:flex;gap:6px;padding:8px;background:#fff;border-top:1px solid #e3e7ef}.composer input{flex:1}.mic{width:46px;border-radius:50%;border:0;background:var(--red);color:#fff;font-size:1.2em;cursor:pointer}.mic.rec{animation:p 1s infinite}@keyframes p{50%{box-shadow:0 0 0 10px #dc143c33}}
@@ -64,3 +64,4 @@ body.contrast .diff del,body.contrast .diff ins,body.contrast .thumb{color:#000}
 .sheetframe{border:2px dashed #cfd6e3;border-radius:12px;padding:14px;text-align:center;color:var(--mut);margin:10px 0}
 .card.agstep.run{box-shadow:0 0 0 2px var(--warn)}.card.agstep.ok{opacity:.75}
 body.contrast .searchbar{background:#000;color:#fff;border-color:#fff}
+details.grp summary{cursor:pointer;list-style:none;padding:4px 0}details.grp summary::-webkit-details-marker{display:none}details.grp summary::before{content:'▸ '}details.grp[open] summary::before{content:'▾ '}

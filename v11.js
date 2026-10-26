@@ -5,20 +5,27 @@
 (()=>{
 S.v11=Object.assign({who:'anna',tab:'karta',sens:false,scope:{leki:false,alergie:false,wyniki:false},nop:[],log:[],ice:false,num:null},S.v11||{});
 const fd=d=>new Date(d).toLocaleDateString('pl-PL');
-const ZHP={anna:{n:'Anna Kowalska',w:'dorosła'},jan:{n:'Jan Kowalski',w:'8 lat'},zofia:{n:'Zofia Kowalska',w:'3 lata'},jakub:{n:'Jakub Kowalski',w:'16 lat'}};
+const ZHP={anna:{n:'Anna Kowalska',w:'dorosła'},jan:{n:'Jan Kowalski',w:'8 lat'},zofia:{n:'Zofia Kowalska',w:'3 lata'},stas:{n:'Staś Kowalski',w:'16 lat'},piotr:{n:'Piotr Malinowski',w:'dorosły'},halina:{n:'Halina Wrona',w:'dorosła'},kuba:{n:'Jakub Lis',w:'dorosły'}};
+const ZHKIDS={anna:['jan','zofia','stas']};
 const ZHV={
  anna:[{d:'2026-10-09',p:'Przychodnia POZ „Mokotów” (DEMO)',t:'Porada lekarza POZ',nfz:68},{d:'2026-09-22',p:'Poradnia kardiologiczna, Szpital Bielański (DEMO)',t:'Porada kardiologiczna',nfz:142},{d:'2026-08-05',p:'Poradnia zdrowia psychicznego (DEMO)',t:'Porada specjalistyczna',nfz:150,sens:true}],
  jan:[{d:'2026-10-02',p:'Przychodnia POZ „Mokotów” (DEMO)',t:'Porada lekarza POZ',nfz:68}],
  zofia:[{d:'2026-09-15',p:'Przychodnia POZ „Mokotów” (DEMO)',t:'Bilans zdrowia dziecka',nfz:96}],
- jakub:[{d:'2026-06-20',p:'Przychodnia POZ „Mokotów” (DEMO)',t:'Porada lekarza POZ',nfz:68}]};
+ stas:[{d:'2026-06-20',p:'Przychodnia POZ „Mokotów” (DEMO)',t:'Porada lekarza POZ',nfz:68}],
+ piotr:[{d:'2026-09-30',p:'Medycyna pracy – kierowcy, Kraków (DEMO)',t:'Badanie kierowcy zawodowego',nfz:0},{d:'2026-07-11',p:'Przychodnia POZ „Kazimierz” (DEMO)',t:'Porada lekarza POZ',nfz:68}],
+ halina:[{d:'2026-10-05',p:'Przychodnia POZ „Czuby”, Lublin (DEMO)',t:'Porada lekarza POZ',nfz:68},{d:'2026-08-19',p:'Poradnia okulistyczna, SPSK1 Lublin (DEMO)',t:'Porada okulistyczna',nfz:120}],
+ kuba:[{d:'2026-05-14',p:'Akademickie Centrum Medyczne, Gdańsk (DEMO)',t:'Porada lekarza POZ',nfz:68}]};
 const ZHB={
  anna:[{d:'2026-09-22',n:'Cholesterol LDL',w:'128 mg/dl',r:'norma laboratorium: poniżej 115 mg/dl (DEMO)',out:true},{d:'2026-09-22',n:'TSH',w:'2,1 mIU/l',r:'norma laboratorium: 0,4–4,0 mIU/l (DEMO)'},{d:'2026-09-22',n:'Hemoglobina',w:'13,2 g/dl',r:'norma laboratorium: 12–16 g/dl (DEMO)'}],
- jan:[{d:'2026-10-02',n:'Morfologia',w:'bez odchyleń',r:'(DEMO)'}],zofia:[],jakub:[]};
+ jan:[{d:'2026-10-02',n:'Morfologia',w:'bez odchyleń',r:'(DEMO)'}],zofia:[],stas:[],piotr:[{d:'2026-09-30',n:'Glukoza na czczo',w:'94 mg/dl',r:'norma laboratorium: 70–99 mg/dl (DEMO)'}],halina:[{d:'2026-10-05',n:'Ciśnienie tętnicze (pomiar)',w:'142/88 mmHg',r:'zalecane: poniżej 140/90 mmHg (DEMO)',out:true}],kuba:[]};
 const ZHI={
  anna:{krew:'A Rh+ (DEMO)',alergie:['penicylina'],leki:['Atorwastatyna 20 mg','Euthyrox 50 µg'],kont:'Tomasz Kowalski (mąż) +48 600 000 000'},
  jan:{krew:'0 Rh+ (DEMO)',alergie:[],leki:[],kont:'Anna Kowalska (mama) +48 600 000 001'},
  zofia:{krew:'A Rh+ (DEMO)',alergie:[],leki:[],kont:'Anna Kowalska (mama) +48 600 000 001'},
- jakub:{krew:'0 Rh+ (DEMO)',alergie:[],leki:[],kont:'Anna Kowalska (mama) +48 600 000 001'}};
+ stas:{krew:'0 Rh+ (DEMO)',alergie:[],leki:[],kont:'Anna Kowalska (mama) +48 600 000 001'},
+ piotr:{krew:'B Rh+ (DEMO)',alergie:[],leki:[],kont:'Ewa Malinowska (żona) +48 600 000 002'},
+ halina:{krew:'0 Rh- (DEMO)',alergie:['pyłki traw'],leki:['Bisoprolol 5 mg'],kont:'Marek Wrona (syn) +48 600 000 003'},
+ kuba:{krew:'AB Rh+ (DEMO)',alergie:['orzeszki ziemne'],leki:[],kont:'Barbara Lis (mama) +48 600 000 004'}};
 const ZHSOR=[['SOR – Szpital Bielański','Warszawa, Bielany','ok. 1 h 40 min'],['SOR – Szpital Praski','Warszawa, Praga-Północ','ok. 2 h 15 min'],['SOR – Szpital Grochowski','Warszawa, Praga-Południe','ok. 55 min'],['SOR – UCK WUM','Warszawa, Śródmieście','ok. 3 h']];
 // Typy zgłoszeń: [kod, opis, adresat, podstawa]. Podstawę podajemy tylko tam, gdzie wynika wprost z przepisu.
 const ZHREP={
@@ -31,13 +38,14 @@ const stamp=()=>new Date().toLocaleString('pl-PL',{dateStyle:'short',timeStyle:'
 const logAdd=(who,co,po)=>{S.v11.log.unshift([stamp(),who,co,po]);S.v11.log=S.v11.log.slice(0,20)};
 
 function zdrowie(){
+ const me=ZHP[S.persona]?S.persona:'anna',fam=[me].concat(ZHKIDS[me]||[]);if(S.v11.who=='jakub')S.v11.who='stas';if(!fam.includes(S.v11.who))S.v11.who=me;
  const v=S.v11,p=ZHP[v.who];
  const tabs=[['karta','🪪 Karta'],['wizyty','📅 Wizyty'],['badania','🧪 Badania'],['leki','💊 Leki'],['gdzie','🧭 Gdzie iść'],['koszty','🧾 Koszty'],['prywatnosc','🔒 Prywatność']];
  const T={karta:tKarta,wizyty:tWizyty,badania:tBadania,leki:tLeki,gdzie:tGdzie,koszty:tKoszty,prywatnosc:tPryw};
  shell('🩺 Moje zdrowie',`<div class="alert y">⚠️<div><b>Koncepcja (DEMO).</b> Dane są fikcyjne, a żadne zgłoszenie nigdzie się nie wysyła. Karta ma być widokiem na dane z Internetowego Konta Pacjenta, a nie nowym rejestrem.</div></div>
- <div class="chips">${Object.keys(ZHP).map(k=>`<button class="chip ${k==v.who?'on':''}" onclick="zhSet('who','${k}')">${ZHP[k].n.split(' ')[0]}</button>`).join('')}</div>
+ <div class="chips">${fam.map(k=>`<button class="chip ${k==v.who?'on':''}" onclick="zhSet('who','${k}')">${ZHP[k].n.split(' ')[0]}</button>`).join('')}</div>
  <div class="chips">${tabs.map(([k,t])=>`<button class="chip ${k==v.tab?'on':''}" onclick="zhSet('tab','${k}')">${t}</button>`).join('')}</div>
- ${v.who!='anna'?`<p class="muted">Widok rodzica: ${p.n} (${p.w}). Konto rodzica widzi dane dziecka do ukończenia 18 lat.</p>`:''}
+ ${v.who!=me?`<p class="muted">Widok rodzica: ${p.n} (${p.w}). Konto rodzica widzi dane dziecka do ukończenia 18 lat.</p>`:''}
  ${T[v.tab]()}
  <p class="muted" style="margin-top:14px">Funkcja jest symulacją. W nagłej sytuacji dzwoń 112.</p>`,{tab:'more'});
  if(v.tab=='gdzie')numDraw();
@@ -92,7 +100,7 @@ function tLeki(){const n=S.v11.nop;
  return `${rowl('💊','Moje e-recepty i zapas leków','#/recepty','Realizacja, przedłużenie, kod do apteki')}
  ${card('⚠️ Działanie niepożądane leku',`<p class="muted">Zgłosić może każdy pacjent. Oficjalne zgłoszenie przyjmuje Urząd Rejestracji Produktów Leczniczych (${lnk('urpl')}). Prototyp zapisuje tylko Twoją notatkę i niczego nie wysyła.</p><button class="btn" onclick="zhNop()">Zgłoś działanie niepożądane</button>`)}
  ${n.length?card('Moje notatki o działaniach niepożądanych',n.map(x=>`<div class="row"><span>${esc(x.lek)}<br><span class="muted">${esc(x.o)}</span></span><b>${x.d}</b></div>`).join('')):''}`}
-function zhNop(){const rx=(S.v7&&S.v7.rx&&S.v7.rx.length?S.v7.rx.map(x=>x.lek):['Atorwastatyna 20 mg, 30 tabl.']);
+function zhNop(){const own=(ZHI[S.v11.who]||{}).leki||[];const rx=(S.v11.who=='anna'&&S.v7&&S.v7.rx&&S.v7.rx.length?S.v7.rx.map(x=>x.lek):own.length?own:['Inny lek (wpisz w opisie)']);
  const m=modal(`<h3>⚠️ Działanie niepożądane</h3><label>Lek</label><select id="zl">${rx.map(l=>`<option>${esc(l)}</option>`).join('')}</select><label>Co się dzieje?</label>${['Wysypka, świąd','Nudności, wymioty','Zawroty głowy','Ból brzucha','Inne'].map(o=>`<label class="chk"><input type="checkbox" name="zo" value="${o}"> ${o}</label>`).join('')}<label class="chk"><input type="checkbox" id="zc"> Duszność, obrzęk twarzy lub gardła, utrata przytomności</label><div id="zw"></div><button class="btn" id="zs">Zapisz w mojej historii</button><button class="btn ghost" onclick="closeModal()">Anuluj</button>`);
  m.querySelector('#zc').onchange=e=>{m.querySelector('#zw').innerHTML=e.target.checked?'<div class="alert r">🚨<div><b>To może zagrażać życiu. Dzwoń 112.</b> Nie czekaj na zgłoszenie w aplikacji.</div></div><a class="btn" href="tel:112">📞 Zadzwoń 112</a>':''};
  m.querySelector('#zs').onclick=()=>{const o=[...m.querySelectorAll('input[name=zo]:checked')].map(x=>x.value);if(m.querySelector('#zc').checked)o.push('objawy ciężkie');

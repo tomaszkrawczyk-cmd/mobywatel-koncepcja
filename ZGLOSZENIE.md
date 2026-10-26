@@ -12,7 +12,7 @@ Prototyp pokazuje to na czterech osobach z różnymi sprawami: matce trójki dzi
 
 Cztery typowe sprawy, od których warto zacząć:
 1. Dostałem pismo i nie wiem, co zrobić. Aplikacja tłumaczy je prostym językiem, liczy termin z przesunięciem na dzień roboczy, układa szkic odpowiedzi i wskazuje właściwy kanał.
-2. Zgubiłem portfel. W rozmowie z asystentem jednym potwierdzeniem zastrzegasz dowód, prawo jazdy i karty.
+2. Zgubiłem portfel. W rozmowie z asystentem jednym potwierdzeniem zastrzegasz dowód i prawo jazdy (System Dokumenty Zastrzeżone obejmuje dokumenty tożsamości), a do banku trafia prośba o blokadę kart (DEMO); aplikacja przypomina też ogólnopolski numer zastrzegania kart 828 828 828.
 3. Kończy mi się lek. Aplikacja liczy zapas z opakowania i dawkowania, prosi lekarza o przedłużenie leku stałego, pokazuje kod do apteki i dostępność.
 4. Przeprowadzam się. Agent układa plan formalności i wykorzystuje wspólne dane, a każdy krok zatwierdzasz osobno.
 
@@ -20,9 +20,9 @@ Co jeszcze jest w środku, w tym samym prostym schemacie „opisz sprawę i potw
 
 Dostępność i prostota: ekran startowy ma jedno pole „Co chcesz załatwić?” z głosem, trzy sprawy osoby i katalog w przewodniku, który pokazuje usługi według sytuacji życiowych. Głos, duże elementy i prosty język są standardem, a nie dodatkiem.
 
-Uczciwie o granicach: to koncepcja. Zakup biletów, polis OC i autostrad wymaga umów z przewoźnikami, ubezpieczycielami i operatorami. Głosowanie przez internet w wyborach powszechnych nie jest dziś dopuszczone, więc występuje jako wyraźnie oznaczony pilotaż. Elektroniczne podpisy pod wnioskiem o referendum wymagają zmiany prawa. Progi i terminy referendum lokalnego oraz skutki sprzeciwu w EPU są oznaczone jako do weryfikacji z aktualnym tekstem ustaw. Ceny, osoby, sygnatury i rozkłady są przykładowe.
+Uczciwie o granicach: to koncepcja. Zakup biletów, polis OC i autostrad wymaga umów z przewoźnikami, ubezpieczycielami i operatorami. Głosowanie przez internet w wyborach powszechnych nie jest dziś dopuszczone, więc występuje jako wyraźnie oznaczony pilotaż. Elektroniczne podpisy pod wnioskiem o referendum wymagają zmiany prawa, a głosowanie przez internet w referendum ogólnokrajowym jest pokazane jako pilotaż, który wymaga zmiany prawa. Progi i terminy referendum lokalnego oraz skutki sprzeciwu w EPU są oznaczone jako do weryfikacji z aktualnym tekstem ustaw. Ceny, osoby, sygnatury i rozkłady są przykładowe.
 
-Technologie: strona statyczna bez logowania. Asystent działa offline na regułach i wyszukiwaniu rozmytym, a po wpisaniu adresu może korzystać z polskiego modelu zgodnego z API OpenAI (Bielik, PLLuM). Kody QR w prototypie są demonstracyjne i nieważne poza nim.
+Technologie: strona statyczna bez logowania. Asystent działa offline na regułach i wyszukiwaniu rozmytym. Po włączeniu w ustawieniach AI pytania, do których nie pasuje żaden scenariusz, trafia do modelu Gemma 4 (Google, otwarte wagi) uruchomionego w Cloudflare Workers AI przez naszego pośrednika; asystent pokazuje, który model działa. Pośrednik jest gotowy do podmiany na polski model zgodny z API OpenAI (Bielik, PLLuM), ale w prototypie żaden z nich dziś nie działa. Kody QR w prototypie są demonstracyjne i nieważne poza nim.
 
 Autor: Tomasz Krawczyk, Supplemental.
 
