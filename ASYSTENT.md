@@ -48,3 +48,21 @@ Przeglądarka woła dostawcę sama (dla Claude wybierz „Claude (Anthropic)”,
 ## Czego nie sprawdziłem
 
 Nie wywołałem żadnego prawdziwego modelu: testy przechodzą na atrapie (Playwright dla przeglądarki, osobny skrypt dla Workera). Nie wiem więc, jak dobrze wybrany darmowy model radzi sobie po polsku ani czy trzyma format JSON. Kod toleruje odpowiedź bez JSON (pokazuje sam tekst, bez akcji). Aktualne limity darmowych planów, nazwy modeli i adresy endpointów trzeba sprawdzić u dostawcy, bo znam je tylko ze źródeł wtórnych. Warunki darmowych planów mogą dopuszczać użycie treści do rozwoju usługi, dlatego w prototypie wolno używać tylko danych fikcyjnych. Działanie Workera w Cloudflare (powiązania `AI`, `RL`) jest napisane według dokumentacji, ale niewdrożone.
+
+
+## v14: wybór modelu AI (Gemma, Bielik, PLLuM)
+
+Ustawienia: menu → Asystent AI → karta „Model AI”. W panelu asystenta widać, który model jest wybrany, a przy każdej odpowiedzi – plakietkę, kto odpowiedział.
+
+| Opcja | Jak działa | Koszt |
+| --- | --- | --- |
+| 💎 Gemma (domyślna) | `@cf/google/gemma-4-26b-a4b-it` przez Workera Cloudflare | darmowy plan Workers AI |
+| 🦅 Bielik 11B v3 (`speakleash/Bielik-11B-v3.0-Instruct`) | przeglądarka woła endpoint zgodny z OpenAI: router Hugging Face `https://router.huggingface.co/v1/chat/completions` albo własny adres (np. Ollama `http://localhost:11434/v1/chat/completions`, vLLM, serwer suwerenny) | według dostawcy; własny serwer – bez opłat za API |
+| 🇵🇱 PLLuM 12B (`CYFRAGOVPL/PLLuM-12B-chat-2412`) | jw. (na routerze HF dostępność zależy od dostawcy) | jw. |
+| 💻 Bielik 1.5B v3 w przeglądarce (`dx0ne/Bielik-1.5B-v3.0-Instruct-onnx-q4`) | transformers.js, WebGPU lub WASM; model pobiera się raz (ok. 1,1 GB) | za darmo, bez klucza, dane nie wychodzą z urządzenia |
+
+Klucz API zapisuje się tylko w `localStorage` tej przeglądarki (wpis `mob_ai_key_v14`), nie w repozytorium i nie na serwerze. Kolejność awaryjna: wybrany model → Gemma (Worker) → reguły w telefonie.
+
+Ollama lokalnie: `ollama run SpeakLeash/bielik-11b-v3.0-instruct`, uruchomić serwer z `OLLAMA_ORIGINS=*` (inaczej Ollama odrzuca wywołania ze strony GitHub Pages kodem 403).
+
+Sprawdzone 26.10.2026: Bielik 1.5B (ONNX q4) odpowiada po polsku – w teście na CPU pierwsze uruchomienie ok. 27 s (pobranie i ładowanie), odpowiedź na 80 tokenów ok. 5 s. Darmowe publiczne Space'y z Bielikiem/PLLuM (np. przez Ollamę na HF) działają z serwera, ale blokują wywołania z przeglądarki albo mają wyczerpany limit, więc nie są podłączone. Fabryka AI (`https://fabryka.ai/v1`, `bielik-11b-v3`) ma darmowy plan testowy (10 zapytań dziennie, konto), ale nie obsługuje CORS – wymaga pośrednika.
