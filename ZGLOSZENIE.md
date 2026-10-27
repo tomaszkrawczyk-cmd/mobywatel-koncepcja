@@ -56,3 +56,18 @@ Autor: Tomasz Krawczyk, Supplemental.
 
 ### v19
 Pogrupowane „Więcej” z wyszukiwarką; jedna nazwa „Asystent” i „Pełnomocnik”; Gemma domyślnie z rezerwą reguły → Bielik offline; duży mikrofon uruchamiający sprawy; tryb seniora na starcie; „Kto sprawdzał moje dane?” (dane DEMO, zgłoszenie nieuprawnionego dostępu); potwierdzenie PIN-em/biometrią (DEMO); „Przeprowadzam się” krok po kroku; przerwane zgłoszenie w czacie można wznowić lub porzucić.
+
+## v21: „Prawdziwy czy podróbka?” – ochrona przed fałszywym mObywatelem
+
+Problem jest realny: w 2026 r. CBZC zatrzymało sprzedawców fałszywej aplikacji, którą mogło kupić ponad 3000 osób (20.02.2026), a 27.10.2026 kolejne 21 osób, w tym 13 nieletnich. Nieletni używają podróbek i przerobionych grafik, żeby kupić alkohol. Ministerstwo Cyfryzacji przypomina, że za podrabianie dokumentu albo używanie podrobionego grozi kara od 3 miesięcy do 5 lat (art. 270 § 1 k.k.), a najpewniejsza weryfikacja to kod QR.
+
+Co dodaje koncepcja (wszystko DEMO, numery spraw zaczynają się od `DEMO-`):
+- `#/podrobki` – centrum: kafel na Start i w Dokumentach, osobna grupa „Ochrona przed podróbkami” w „Więcej”.
+- `#/sprawdz-dokument` – weryfikator z kodem QR i jednorazowym kodem 6-cyfrowym, który wygasa po 120 s; **selektywne ujawnianie** (tylko „pełnoletni TAK/NIE”, imię i zdjęcie albo pełne dane); dane znikają po czasie.
+- `#/pokaz-dokument` – żywy znak bezpieczeństwa: zegar z sekundami, kolor i „słowo minuty” liczone z godziny, fala od dotyku, hologram reagujący na przechylenie; ostrzeżenie, że zrzut ekranu ani nagranie nie są dokumentem.
+- `#/jak-rozpoznac/{sklep|policja|senior}` – poradnik dla trzech grup odbiorców i porównanie „prawdziwy / podejrzany”.
+- `#/zglos-podrobke` – formularz zgłoszenia (SYMULACJA, nic nie jest wysyłane) z odesłaniem do incydent.cert.pl i na policję.
+- Notka prawna „Udostępnianie dokumentu komuś innemu to przestępstwo”, napisana ostrożnie i ze źródłami (art. 270, 269b, 275 k.k., art. 304 k.p.k.).
+- Reguły asystenta w telefonie odpowiadają na pytania typu „jak sprawdzić, czy mObywatel jest prawdziwy”. Kolejność Gemma → reguły → Bielik zostaje bez zmian.
+
+Źródła: gov.pl/web/cyfryzacja (kod-qr--skuteczna-metoda-weryfikacji-mdowodu, mdowod--jak-dziala…, falszowanie-dokumentow-tozsamosci-to-powazne-przestepstwo), cbzc.policja.gov.pl (aktualności 831 i 1048), skierniewice.policja.gov.pl, rmf24.pl.
