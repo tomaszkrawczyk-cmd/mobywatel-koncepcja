@@ -128,3 +128,18 @@ Co dodaje ten prototyp od siebie:
 - Dostęp rodzica do danych nastolatka (16–17 lat) wymaga analizy prawnej (m.in. art. 32 ustawy o zawodach lekarza i lekarza dentysty). Do weryfikacji w aktualnym tekście.
 - Linki prowadzą do stron głównych instytucji (URPL, NFZ, Rzecznik Praw Pacjenta, pacjent.gov.pl). Adresy podstron mogą się zmieniać.
 - Kwoty i wyniki badań są fikcyjne. Normy laboratoryjne są przykładowe.
+
+## v20 – tryb alarmowy i emerytura na telefonie
+
+Plik `v20.js` (podłączony w `index.html` za `v19.js`).
+
+- **Tryb alarmowy** (`#/alarm`) – jeden czerwony przycisk, także pierwszy na ekranie głównym (w trybie seniora wyraźnie większy) oraz przy rodzinie, planie rodzinnym, bezpieczeństwie i ustawieniach. Sześć dużych kroków, czytanie na głos przez Web Speech API, zielony przycisk „Jestem bezpieczny/bezpieczna” i tablica statusu osób z przełącznika rodziny (Anna, Piotr, Halina, Kuba). Status zostaje w przeglądarce. Karta „najbliższy schron” ma wymyślony adres i jest oznaczona jako DEMO; obok są linki do map PSP. Treść kroków jest w localStorage i w osobnej pamięci Cache Storage (`mobywatel-koncepcja-alarm-v20`). Nie ma service workera, żeby nie przechwytywać pobierania Bielika.
+- **Moja przyszła emerytura** (`#/emerytura-telefon`) – suwak wieku 60–75 i porównanie z punktem 60/65 lat. Wzór jest poglądowy (DEMO), nie z ZUS. PPK, IKE i IKZE są opcjonalne: zgoda, opis „co przechowujemy” i przycisk „Usuń moje dane”. Kwoty nie wychodzą z przeglądarki. W trybie seniora liczba i suwak są większe, a wzór jest zwinięty. Stary ekran `#/emerytura` zostaje.
+- Pytania „co robić podczas alarmu” i „ile będę mieć emerytury” obsługują reguły w telefonie, przed Gemmą i Bielikiem. Łańcuch modelu się nie zmienia.
+
+### Niepewności (v20)
+
+- Wzór (19,52% bez waloryzacji, przykładowe miesiące życia, zmyślone pensje person) nie jest prognozą ZUS ani poradą.
+- Schrony są fikcyjne. W alarmie obowiązują komunikaty służb i rejestry PSP.
+- Status rodziny nie ma serwera – widać go tylko na tym urządzeniu, po przełączeniu osoby.
+- Ponowne otwarcie całej strony bez sieci zależy od pamięci przeglądarki; treść alarmu po załadowaniu aplikacji nie jest dociągana z internetu.
