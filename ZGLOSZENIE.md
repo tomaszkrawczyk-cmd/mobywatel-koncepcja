@@ -71,3 +71,16 @@ Co dodaje koncepcja (wszystko DEMO, numery spraw zaczynają się od `DEMO-`):
 - Reguły asystenta w telefonie odpowiadają na pytania typu „jak sprawdzić, czy mObywatel jest prawdziwy”. Kolejność Gemma → reguły → Bielik zostaje bez zmian.
 
 Źródła: gov.pl/web/cyfryzacja (kod-qr--skuteczna-metoda-weryfikacji-mdowodu, mdowod--jak-dziala…, falszowanie-dokumentow-tozsamosci-to-powazne-przestepstwo), cbzc.policja.gov.pl (aktualności 831 i 1048), skierniewice.policja.gov.pl, rmf24.pl.
+
+## v22: „Zgłoś oszustwo” – CERT Polska, bank, policja w jednym miejscu
+
+Ludzie nie wiedzą, gdzie zgłosić oszustwo. Oficjalne kanały są różne dla różnych sytuacji: SMS przekazuje się na **8080** (CERT Polska, bezpłatnie, w oryginalnej formie, maks. 3 zgłoszenia na 4 godziny), strony i e-maile zgłasza się na **incydent.cert.pl** albo cert@cert.pl, a gdy chodzi o pieniądze – najpierw **bank**, potem **policja**, i zastrzeżenie **PESEL**. CERT prowadzi Listę Ostrzeżeń (cert.pl/lista-ostrzezen, hole.cert.pl, test na lista.cert.pl).
+
+Co dodaje koncepcja (aplikacja sama nic nie wysyła, numery to `DEMO-CERT-…`):
+- `#/zglos-oszustwo` – centrum z 6 kategoriami: dziwny SMS, fałszywa strona lub link, telefon „z banku/policji” (spoofing), fałszywy mObywatel lub dokument (łączy się z v21 `#/zglos-podrobke`), fałszywa inwestycja (lista KNF), oszustwo w sklepie, OLX lub mediach społecznościowych.
+- `#/zglos-oszustwo/{sms|www|call|doc|inv|shop}` – prowadzony formularz: zbiera tylko potrzebne pola, usuwa z opisu PESEL, numery kont i kart, e-maile i kody, pokazuje podgląd DEMO i **prawdziwe** przyciski: `sms:8080` z wklejoną treścią, incydent.cert.pl z kopiowaniem tekstu, `tel:112`, wskazówkę „zadzwoń do banku numerem z karty”.
+- `#/sprawdz-link` – wskazówki z samego adresu (podszywanie się pod markę, nietypowa domena, darmowy hosting, punycode) z wyraźnym zastrzeżeniem, że to **nie werdykt**, oraz wyjaśnienie, jak działa Lista Ostrzeżeń CERT.
+- `#/po-oszustwie` – lista kroków z odhaczaniem: bank i zastrzeżenie karty (zasada D+1 według Rzecznika Finansowego), zastrzeżenie PESEL, zmiana haseł, usunięcie aplikacji do zdalnego dostępu, CERT, policja, ostrzeżenie bliskich.
+- Wejścia: Bezpieczeństwo, grupa „Ochrona przed podróbkami i oszustwami” w „Więcej”, wyszukiwarka, przyciski podpowiedzi i reguły asystenta („dostałem dziwnego SMS-a”, „jak zgłosić oszustwo”, „straciłem pieniądze”). Kolejność Gemma → reguły → Bielik bez zmian.
+
+Źródła: gov.pl/web/baza-wiedzy (zgłoś SMS do CERT), cert.pl/lista-ostrzezen, wiedza.cert.pl, cbzc.policja.gov.pl (Zgłoś cyberoszustwo), rf.gov.pl, gov.pl (Zastrzeż PESEL), knf.gov.pl.
