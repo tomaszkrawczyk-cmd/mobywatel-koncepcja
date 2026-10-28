@@ -6,7 +6,7 @@ const DEF_PROXY='https://mobywatel-asystent.tomaszkrawczyk.workers.dev';
 if(S.v10&&!S.v10.manual&&S.v10.mode=='off'){S.v10.mode='proxy';if(!/^https:/.test(S.v10.proxy||''))S.v10.proxy=DEF_PROXY;save()}
 fetch('ai-config.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(c=>{if(c&&/^https:/.test(c.proxy||'')&&!/^https:/.test(S.v10.proxy||'')){S.v10.proxy=c.proxy;save()}}).catch(()=>{});
 const online=()=>S.v10.mode=='proxy'&&/^https:/.test(S.v10.proxy||'');
-const bReady=()=>A.state=='ready';
+const bReady=()=>A.state=='ready'&&!window.v24NoB; // v24: po nieudanym wymuszonym Bieliku nie pytamy go drugi raz
 const adv=()=>['bielik','pllum'].includes((S.v14||{}).model);
 window.v15OnReady=function(){toast('🦅 Bielik gotowy – zapasowy asystent offline');setTimeout(()=>window.dispatchEvent(new CustomEvent('v15')),0);return true}; // nie przełączamy automatycznie: Bielik jest zapasowy
 if(S.v14&&S.v14.model=='local'&&!(S.v15&&S.v15.picked))S.v14.model='gemma';

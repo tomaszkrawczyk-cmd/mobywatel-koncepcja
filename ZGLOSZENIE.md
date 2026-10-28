@@ -99,3 +99,10 @@ Co dodaje koncepcja (DEMO, nic nie jest wysyłane):
 - Mały wskaźnik na starcie: „Dokumenty: wszystko w porządku” albo „wymaga uwagi”. Reguły asystenta prowadzą do tych ekranów. Kolejność Gemma → reguły → Bielik bez zmian.
 
 Źródła: gov.pl/web/cyfryzacja (aktualizacja certyfikatów do 5.08.2026, certyfikat ważny rok, zgubiony telefon, pomoc COI, Zastrzeż dokument), regulamin aplikacji mObywatel, info.mobywatel.gov.pl/kontakt, EUR-Lex 32024R1183, digital-strategy.ec.europa.eu (factpage portfela, Q&A, standardy i pulpit prywatności), gov.pl – europejski portfel w mObywatelu.
+
+## v24: Bielik na telefonie – WebGPU w Chrome na Androidzie i „Użyj Bielika mimo wszystko”
+
+Na telefonach bez WebGPU Bielik działa na procesorze (WASM) i nie zalicza testu szybkości (16 tokenów w 4 s), więc odpowiada Gemma. v24 mówi to wprost i daje dwa wyjścia:
+- **Karta „Bielik na tym urządzeniu”** w ustawieniach asystenta (`#/ai`) i linia pod kartą statusu AI: silnik (WebGPU albo WASM/CPU), stan WebGPU (`navigator.gpu`, `requestAdapter()`), zmierzona szybkość (np. „16 tokenów w 5 s ≈ 3,2 tok/s · próg 4 s”).
+- **Instrukcja krok po kroku** (gdy WebGPU brak albo adapter = null): `chrome://flags` → wyszukaj „WebGPU” → „Unsafe WebGPU Support” = Enabled (oraz „WebGPU Developer Features”, jeśli jest) → Relaunch → otwórz prototyp z `?bielik=1` (model jest w pamięci przeglądarki, nie pobiera się ponownie). Są przyciski kopiowania `chrome://flags`, adresu flagi i adresu z `?bielik=1` oraz uczciwa uwaga, że strona nie może sama zmienić ustawień przeglądarki. Źródło: Chrome for Developers – WebGPU Troubleshooting oraz „What's New in WebGPU (Chrome 121)”.
+- **„Użyj Bielika mimo wszystko”** (localStorage `mob24_bielik_force` albo `?bielik=force`): pomija próg testu szybkości, odpowiada Bielik z limitem 90 s zamiast 20 s, w czacie jest widoczne ostrzeżenie „odpowiedzi wolniejsze” z przyciskiem „Wyłącz”. Gdy Bielik zawiedzie: Gemma (ze zwykłą zgodą na wysyłkę), potem reguły w telefonie, z komunikatem. Gdy ustawienie jest wyłączone, kolejność Gemma → reguły → Bielik i zgoda lub odliczanie przed pobraniem pozostają bez zmian.
