@@ -84,3 +84,18 @@ Co dodaje koncepcja (aplikacja sama nic nie wysyła, numery to `DEMO-CERT-…`):
 - Wejścia: Bezpieczeństwo, grupa „Ochrona przed podróbkami i oszustwami” w „Więcej”, wyszukiwarka, przyciski podpowiedzi i reguły asystenta („dostałem dziwnego SMS-a”, „jak zgłosić oszustwo”, „straciłem pieniądze”). Kolejność Gemma → reguły → Bielik bez zmian.
 
 Źródła: gov.pl/web/baza-wiedzy (zgłoś SMS do CERT), cert.pl/lista-ostrzezen, wiedza.cert.pl, cbzc.policja.gov.pl (Zgłoś cyberoszustwo), rf.gov.pl, gov.pl (Zastrzeż PESEL), knf.gov.pl.
+
+## v23: „Moje dokumenty nie znikną” i „Kto pyta o moje dane?”
+
+Ludzie skarżą się, że dokument znika z mObywatela bez wyjaśnienia. Ministerstwo Cyfryzacji opisuje realne powody: aktywacja na nowym telefonie unieważnia certyfikat na starym, certyfikat mDowodu jest ważny rok, a do 5.08.2026 trzeba było się zalogować, żeby certyfikaty dokumentów odświeżyły się same. Osobno jest zastrzeżenie dokumentu (System Dokumenty Zastrzeżone) i zawieszenie e-dowodu na 14 dni. Czego MC nie napisało wprost (ciche kasowanie kafelka przy zmianie danych w rejestrze, jedna liczba godzin offline), prototyp nie podaje jako faktu.
+
+Druga sprawa: zanim usługa dostanie dane, człowiek ma widzieć kto pyta, o co i po co, i móc oddać mniej. Rozporządzenie (UE) 2024/1183 mówi, że korzystanie z europejskiego portfela jest dobrowolne (art. 5a ust. 15), a część usług ma go przyjąć tylko na życzenie użytkownika (art. 5f). Strona ufająca nie żąda innych danych niż zgłoszone (art. 5b ust. 3). W portfelu jest historia udostępnień (art. 5a ust. 4 lit. d).
+
+Co dodaje koncepcja (DEMO, nic nie jest wysyłane):
+- `#/zdrowie-dokumentow` i `#/stan-dokumentu/{id}` – stan dokumentu (aktywny / wymaga odświeżenia / wygasa wkrótce / zastrzeżony / usunięty z urządzenia), data odświeżenia, kopia offline, przyczyny i duże kroki w trybie seniora. „Przywróć” jest symulacją. Anna widzi dokumenty dzieci.
+- `#/raport-problemu` – raport techniczny bez danych osobowych, z prawdziwą infolinią +48 42 253 54 74 i adresem mobywatel-pomoc@coi.gov.pl (otwierane dopiero po dotknięciu).
+- `#/kto-pyta` i `#/zadanie/{sklep|bank|hotel|przychodnia}` – karta żądania, pola potrzebne i nadmiarowe (zamiast daty urodzenia: „pełnoletni: tak”; zamiast adresu: miasto). Odmowa albo udostępnienie zapisuje się w rejestrze z v19 (`#/privacy`), zgodę można cofnąć. Okazanie przy ladzie prowadzi do weryfikatora QR z v21 (`#/sprawdz-dokument`), bez drugiej kopii tamtego ekranu.
+- `#/prawa-portfela` – skrót praw ze źródłami.
+- Mały wskaźnik na starcie: „Dokumenty: wszystko w porządku” albo „wymaga uwagi”. Reguły asystenta prowadzą do tych ekranów. Kolejność Gemma → reguły → Bielik bez zmian.
+
+Źródła: gov.pl/web/cyfryzacja (aktualizacja certyfikatów do 5.08.2026, certyfikat ważny rok, zgubiony telefon, pomoc COI, Zastrzeż dokument), regulamin aplikacji mObywatel, info.mobywatel.gov.pl/kontakt, EUR-Lex 32024R1183, digital-strategy.ec.europa.eu (factpage portfela, Q&A, standardy i pulpit prywatności), gov.pl – europejski portfel w mObywatelu.

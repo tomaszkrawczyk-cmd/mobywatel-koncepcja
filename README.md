@@ -143,3 +143,19 @@ Plik `v20.js` (podłączony w `index.html` za `v19.js`).
 - Schrony są fikcyjne. W alarmie obowiązują komunikaty służb i rejestry PSP.
 - Status rodziny nie ma serwera – widać go tylko na tym urządzeniu, po przełączeniu osoby.
 - Ponowne otwarcie całej strony bez sieci zależy od pamięci przeglądarki; treść alarmu po załadowaniu aplikacji nie jest dociągana z internetu.
+
+## v23 – dokumenty nie znikną i kto pyta o dane
+
+Plik `v23.js` (w `index.html` za `v22.js`). Symulacje są oznaczone DEMO. Nic nie jest wysyłane. Łańcuch Gemma → reguły → Bielik i pobieranie Bielika bez zmian.
+
+- **Moje dokumenty nie znikną** (`#/zdrowie-dokumentow`, szczegół `#/stan-dokumentu/…`) – stan każdego dokumentu: aktywny, wymaga odświeżenia, wygasa wkrótce, zastrzeżony, usunięty z urządzenia. Data odświeżenia i informacja, czy jest kopia offline. Przy zniknięciu: przyczyny prostym językiem (potwierdzone u MC albo opisane jako możliwe) i duże kroki w trybie seniora. „Przywróć” to symulacja. Rodzic (Anna) widzi dokumenty dzieci.
+- **Raport problemu** (`#/raport-problemu`) – dane techniczne bez imienia, PESEL-u i numeru dokumentu. Kopiowanie, `mailto:` i telefon otwierają się dopiero po dotknięciu.
+- **Kto pyta o moje dane** (`#/kto-pyta`, karta `#/zadanie/sklep|bank|hotel|przychodnia`) – kto, jakie pola, po co, oznaczenie potrzebne / nadmiarowe i propozycja minimalizacji (np. „pełnoletni: tak” zamiast daty urodzenia). Odznaczenie pól nadmiarowych, odmowa albo udostępnienie. Wpis trafia do rejestru z v19 (`#/privacy`) z cofnięciem zgody. Okazanie na miejscu prowadzi do weryfikatora QR z v21, bez drugiej kopii tego ekranu.
+- **Twoje prawa** (`#/prawa-portfela`) – dobrowolność, minimalizacja, historia udostępnień i zapowiedź pilotażu w mObywatelu. Tylko ze źródłami (rozporządzenie (UE) 2024/1183, Komisja Europejska, gov.pl).
+- Na starcie jest mały wskaźnik „Dokumenty: wszystko w porządku” albo „wymaga uwagi”. Reguły asystenta: „zniknął mi dowód z aplikacji”, „sklep chce mojej daty urodzenia”.
+
+### Niepewności (v23)
+
+- Godziny infolinii: komunikat MC z 2.12.2025 podaje dni robocze 7:00–18:00, a regulamin przy unieważnieniu certyfikatu opisuje ten sam numer jako linię całodobową.
+- Nie znalazłem w regulaminie jednej liczby godzin, przez które dokument da się okazać całkiem offline. Brak sieci jest opisany jako przeszkoda w odświeżeniu, nie jako powód zniknięcia.
+- Ocena pól „potrzebne / nadmiarowe” w czterech scenach jest poglądowa, nie opinią, czy konkretna umowa albo meldunek wymaga danego pola.
