@@ -159,3 +159,20 @@ Plik `v23.js` (w `index.html` za `v22.js`). Symulacje są oznaczone DEMO. Nic ni
 - Godziny infolinii: komunikat MC z 2.12.2025 podaje dni robocze 7:00–18:00, a regulamin przy unieważnieniu certyfikatu opisuje ten sam numer jako linię całodobową.
 - Nie znalazłem w regulaminie jednej liczby godzin, przez które dokument da się okazać całkiem offline. Brak sieci jest opisany jako przeszkoda w odświeżeniu, nie jako powód zniknięcia.
 - Ocena pól „potrzebne / nadmiarowe” w czterech scenach jest poglądowa, nie opinią, czy konkretna umowa albo meldunek wymaga danego pola.
+
+## v25 – gdzie trafia pytanie i pismo krótko
+
+Plik `v25.js` (w `index.html` za `v24.js`). Symulacje są oznaczone DEMO. Nic nie jest wysyłane do urzędu. **Łańcuch Gemma → reguły → Bielik i pobieranie Bielika są bez zmian** — w tym próg szybkości, `?bielik=0/1`, WebGPU i „Użyj Bielika mimo wszystko” z v24. Ta warstwa nie uruchamia pobierania i nie edytuje `worker/worker.js`.
+
+Inspiracje: [blokada ChatGPT i Claude w szwedzkim urzędzie](https://x.com/kurasinski/status/2114670549146202392) oraz [wpis o skargach pisanych przez AI, które zalewają brytyjskie urzędy](https://x.com/inTorusAI/status/2114951978434646462). Zamiast odcinać asystenta, widać drogę tekstu. Zamiast wysyłać długi szkic, sprawdzenie jest przed przyciskiem.
+
+- **Gdzie trafia moje pytanie** (`#/gdzie-trafia`, skrót w ustawieniach `#/ai`, plakietka przy odpowiedzi asystenta, pytania „gdzie trafia moje pytanie” i „czy AI widzi mój PESEL”). Gemma = tekst wyszedł do pośrednika. Reguły albo Bielik w przeglądarce = został na urządzeniu. Stuknięcie plakietki otwiera wyjaśnienie.
+- **Zanim tekst pójdzie do Gemmy**, na urządzeniu sprawdzane są: PESEL (cyfra kontrolna), numer dowodu i paszportu (cyfra kontrolna), IBAN albo rachunek, telefon, e-mail, adres ulicy. Przyciski: „Zamaskuj i wyślij” (np. `[PESEL]`) albo „Wyślij bez zmian”. Kolejność modeli się nie zmienia, może się zmienić tylko tekst. „Anuluj” nic nie wysyła. Starszy filtr z v10 i v17 nadal podmienia PESEL, NIP, rachunek, telefon, e-mail i część adresu — także przy „bez zmian”. Nie rusza numeru dowodu ani paszportu.
+- **Pismo krótko i konkretnie** (`#/pismo-krotko` i kreator `#/appeal`, zanim zadziała wysyłka DEMO). Miernik długości (cel poglądowy: około jednej strony), lista elementów (adresat, znak sprawy, żądanie, uzasadnienie, data przy pismach od terminu, data i podpis), ostrzeżenia o wypełniaczach, dopisanych numerach przepisów i zdaniach z szablonu. Na górze szkicu jest „Streszczenie dla urzędnika” (2–3 zdania z pól formularza). „Skróć” działa regułami w telefonie. „Skróć z asystentem” woła istniejącą kolejność (zadanie `popraw` w pośredniku), bez nowego API. W trybie seniora przyciski są duże. Działa dla osoby wybranej w przełączniku rodziny.
+
+### Niepewności (v25)
+
+- Czy wdrożony Worker naprawdę woła Gemmę i czy Cloudflare albo dostawca modelu zapisuje treść — tego nie widać w repozytorium. W `worker/worker.js` nie ma zapisu pytania do bazy; jest licznik limitu w pamięci (albo usługa limitów, jeśli jest włączona na wdrożeniu).
+- „Około jednej strony” (1400–2800 znaków) to próg pokazu, nie norma kancelaryjna.
+- Cyfra kontrolna dowodu: 3 litery i 6 cyfr, sprawdzana jest czwarta pozycja (wagi 7, 3, 1, 9, 7, 3, 1, 7, 3). Paszport: 2 litery i 7 cyfr, sprawdzana jest trzecia pozycja (wagi 7, 3, 9, 1, 7, 3, 1, 7, 3). Wzorzec i tak zgłasza numer, gdy suma się nie zgadza.
+- Rozmowa zostaje w pamięci strony, a po zmianie osoby — w localStorage tej przeglądarki. To nie jest serwer prototypu.
