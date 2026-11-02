@@ -176,3 +176,20 @@ Inspiracje: [blokada ChatGPT i Claude w szwedzkim urzędzie](https://x.com/kuras
 - „Około jednej strony” (1400–2800 znaków) to próg pokazu, nie norma kancelaryjna.
 - Cyfra kontrolna dowodu: 3 litery i 6 cyfr, sprawdzana jest czwarta pozycja (wagi 7, 3, 1, 9, 7, 3, 1, 7, 3). Paszport: 2 litery i 7 cyfr, sprawdzana jest trzecia pozycja (wagi 7, 3, 9, 1, 7, 3, 1, 7, 3). Wzorzec i tak zgłasza numer, gdy suma się nie zgadza.
 - Rozmowa zostaje w pamięci strony, a po zmianie osoby — w localStorage tej przeglądarki. To nie jest serwer prototypu.
+
+## v26 – auto po zakupie lub sprzedaży i gotowość aplikacji
+
+Plik `v26.js` (w `index.html` za `v25.js`). Symulacje są oznaczone DEMO. Nic nie jest wysyłane do urzędu ani do sklepu. **Łańcuch Gemma → reguły → Bielik i pobieranie Bielika są bez zmian.** Ta warstwa nie uruchamia pobierania i nie edytuje `worker/worker.js`.
+
+Nie dubluje istniejących spraw: rejestracja zostaje w `#/flow/auto`, porównanie OC w `#/oc`, płatności w `#/money`, krótka lista „Sprzedaję samochód” w `#/agent/auto`, terminy w `#/reminders`, stan dokumentów w `#/zdrowie-dokumentow` (v23 udostępnia `v23Docs` do odczytu). Przełącznik rodziny to ten sam `applyPersona` co na starcie.
+
+- **Kupiłem lub sprzedałem auto** (`#/auto-co-dalej`). Lista od daty wpisanej przez użytkownika. Rejestracja: 30 dni od nabycia w Polsce, 60 dni przy spadku, 90 dni przy obrocie pojazdami (gov.pl, Ministerstwo Infrastruktury). Zgłoszenie zbycia: 30 dni kalendarzowych (gov.pl). PCC-3: 14 dni i 2% przy kupnie od osoby prywatnej, zwolnienie do 1000 zł, brak PCC przy VAT (podatki.gov.pl). OC poprzedniego właściciela do końca polisy, chyba że zostanie wypowiedziane; sprzedający powiadamia ubezpieczyciela w 14 dni (ustawa, eli.gov.pl). Gdzie liczby dni nie ma w tych źródłach, widać „sprawdź termin”. Status kroku, pomoc członkowi rodziny i plik `.ics` powstają w przeglądarce.
+- **Czy moja aplikacja jest gotowa?** (`#/gotowosc`, karta na starcie). Wersja i system są symulacją. Ważność dokumentów bierze się z v23. Lista „co zrobić i do kiedy”. W rodzinie widać, że Halina ma w pokazie starszą wersję, i można zostawić jej na tym telefonie wskazówkę dużym tekstem (`#/wskazowka`). Termin aktualizacji w pokazie to 15.12.2026 i jest podpisany jako data demonstracyjna.
+
+### Niepewności (v26)
+
+- Daty 16 listopada 2026 nie ma w komunikacie gov.pl, który udało się odczytać. W aplikacji jej nie ma.
+- 14 dni na powiadomienie ubezpieczyciela jest w art. 32 ustawy (tekst jednolity Dz.U. 2023 poz. 2500 na eli.gov.pl). Nowsze zestawienie nadal zawiera ten ustęp; to nie jest osobna strona gov.pl z poradnikiem.
+- Wysokości opłaty UFG za przerwę w OC tu nie ma — nie została sprawdzona w źródle rządowym przy tym kroku.
+- Akcyza przy aucie z zagranicy jest tylko odesłaniem. Nie ma tu liczby dni na deklarację.
+- Zegar listy auta to 23.10.2026, tak jak reszta prototypu, nie data otwarcia strony.

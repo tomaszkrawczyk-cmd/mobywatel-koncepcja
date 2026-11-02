@@ -87,6 +87,7 @@ function enrich(d){
 function mine(){return adult().map(enrich)}
 function familyDocs(){return kids().map(enrich)}
 function watch(){return mine().concat(familyDocs())}
+window.v23Docs=function(){const slim=d=>({id:d.id,name:d.name,st:d.st,until:d.until||'',who:d.who||'',kid:!!d.kid});return {mine:mine().map(slim),family:familyDocs().map(slim)}}
 function findDoc(id){return watch().find(d=>d.id===id)||null}
 function problems(list){return (list||watch()).filter(d=>d.st==='refresh'||d.st==='soon'||d.st==='blocked'||d.st==='gone')}
 function worst(list){const p=problems(list);if(p.some(d=>d.st==='gone'||d.st==='blocked'))return 'bad';if(p.length)return 'warn';return 'ok'}
