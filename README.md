@@ -193,3 +193,19 @@ Nie dubluje istniejących spraw: rejestracja zostaje w `#/flow/auto`, porównani
 - Wysokości opłaty UFG za przerwę w OC tu nie ma — nie została sprawdzona w źródle rządowym przy tym kroku.
 - Akcyza przy aucie z zagranicy jest tylko odesłaniem. Nie ma tu liczby dni na deklarację.
 - Zegar listy auta to 23.10.2026, tak jak reszta prototypu, nie data otwarcia strony.
+
+## v27 – Gdzie się ukryć PL (punkty schronienia PSP)
+
+Plik `v27.js` (w `index.html` za `v26.js`). **Łańcuch Gemma → reguły → Bielik i pobieranie Bielika są bez zmian.** Nic nie zostało usunięte; wymyślony schron z v20 dalej jest oznaczony DEMO.
+
+- **Gdzie się ukryć** (`#/schronienie`, alias `#/gdzie-sie-ukryc`). Karta opisuje oficjalny serwis Komendy Głównej Państwowej Straży Pożarnej [gdziesieukryc.pl](https://gdziesieukryc.pl/) i aplikację „Gdzie się ukryć PL” ([Google Play: `pl.gdziesieukryc.app`](https://play.google.com/store/apps/details?id=pl.gdziesieukryc.app), [App Store](https://apps.apple.com/pl/app/id6819162336)). Źródło: [komunikat MSWiA z 02.11.2026](https://www.gov.pl/web/mswia/aplikacje-gdzie-sie-ukryc-pl-mozesz-juz-pobrac-na-telefon). Ekran ma etykietę „Serwis zewnętrzny · Państwowa Straż Pożarna” – to nie jest część mObywatela.
+- Przyciski: mapa w nowej karcie, Sklep Play (na Androidzie `intent://…;scheme=market;package=com.android.vending` z `S.browser_fallback_url` na stronę Play, gdzie indziej zwykły link), na Androidzie próba otwarcia zainstalowanej aplikacji (`intent` z `package=pl.gdziesieukryc.app`, w razie braku strona Play), na iPhonie App Store. Poradniki PSP (schronienia, atak z powietrza, sygnały alarmowe, FAQ) i strona województwa wybranej osoby z rodziny.
+- Bez ramki `iframe`: serwis wysyła `X-Frame-Options: DENY` i `frame-ancestors 'none'`. Brak publicznego API, więc prototyp nie rysuje punktów na własnej mapie.
+- Odnośniki: karta „Prawdziwe punkty schronienia” w `#/alarm` (pod schronem DEMO), skróty w `#/security`, `#/plan`, `#/kit`, `#/sos`, `#/syrena`, kafelek w grupie „Kryzys” na ekranie Więcej, wyszukiwarka usług i chip „Gdzie się ukryć?” w asystencie.
+- Asystent: reguła w telefonie (bez AI) dla „gdzie się ukryć”, „schron”, „punkt schronienia” itp. prowadzi do `#/schronienie`. „Co robić podczas alarmu” dalej otwiera `#/alarm`. Pytania o projekty ustaw, petycje i schroniska nie są przechwytywane.
+- Tryb seniora: przyciski min. 64 px, większy tekst.
+
+### Niepewności (v27)
+
+- Otwarcie zainstalowanej aplikacji przez `intent` z adresem `https://gdziesieukryc.pl/` nie zostało sprawdzone na telefonie (serwis nie publikuje `assetlinks.json`). Gdy się nie uda, Chrome otwiera stronę Google Play.
+- Mapa nie ma udokumentowanych parametrów adresu (np. lokalizacji), dlatego prototyp otwiera stronę główną albo stronę województwa.
