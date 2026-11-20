@@ -209,3 +209,26 @@ Plik `v27.js` (w `index.html` za `v26.js`). **Łańcuch Gemma → reguły → Bi
 
 - Otwarcie zainstalowanej aplikacji przez `intent` z adresem `https://gdziesieukryc.pl/` nie zostało sprawdzone na telefonie (serwis nie publikuje `assetlinks.json`). Gdy się nie uda, Chrome otwiera stronę Google Play.
 - Mapa nie ma udokumentowanych parametrów adresu (np. lokalizacji), dlatego prototyp otwiera stronę główną albo stronę województwa.
+
+## v28 – szkolenia wGotowości i portfel unijny a mObywatel
+
+Plik `v28.js` (w `index.html` za `v27.js`). **Łańcuch Gemma → reguły → Bielik i pobieranie Bielika są bez zmian.** Nic nie zostało usunięte. Zgłoszenie do WOT (`#/flow/wot`), prawa EUDI (`#/prawa-portfela`) i „Kto pyta o moje dane” (`#/kto-pyta`) zostają; nowe ekrany do nich odsyłają.
+
+Inspiracja z X (rozwinięta, nie skopiowana):
+- [WCR Nowy Targ, 19.11.2026](https://x.com/WCR_NowyTarg/status/2123393355761569916) i [WCR Ciechanów, 09.11.2026](https://x.com/WCRCiechanow/status/2119733099751973219) – zapisy na #wGotowości w mObywatelu.
+- [mObywatelGOV, 17.11.2026](https://x.com/mObywatelGOV/status/2122683937017253946), [Krzysztof Gawkowski, 17.11.2026](https://x.com/KGawkowski/status/2122701180379828629), [INFOR.PL, 19.11.2026](https://x.com/INFORPL/status/2123434465191997579), [Polskie Radio, 10.11.2026](https://x.com/polskieradiopl/status/2120056550794412212) – projekt ustawy o Europejskim Portfelu Tożsamości Cyfrowej i potwierdzanie wieku bez pozostałych danych.
+
+Fakty w interfejsie pochodzą ze stron gov.pl, nie z tych wpisów.
+
+- **Szkolenia wGotowości** (`#/wgotowosci`, aliasy `#/w-gotowosci`, `#/szkolenia-obronne`; zapis `#/wgotowosci-zapis`). Przewodnik po bezpłatnym, dobrowolnym szkoleniu cywilnym MON (ok. 8 godzin, cztery obszary). Wyraźnie oddzielone od służby w WOT: nie zostaje się żołnierzem i nie składa się przysięgi. Oficjalna ścieżka zapisu z komunikatu MC (Usługi → Bezpieczeństwo → Szkolenia obronne → Zgłoś się). Status „zapisu” i plik `.ics` są oznaczone DEMO i powstają tylko w przeglądarce; nic nie jest wysyłane. Widok rodziny (w pokazie Haliny także mama). Odnośniki z `#/security`, `#/alarm`, `#/plan`, `#/kit`, `#/sos`, z `#/flow/wot` i z grupy „Kryzys”.
+- **Czy portfel unijny zastąpi mObywatela?** (`#/portfel-unijny`, alias `#/eudi-ustawa`). Wyjaśnienie projektu ustawy przyjętego przez Radę Ministrów 17.11.2026: to jeszcze nie obowiązujące prawo; korzystanie ma być dobrowolne; w pierwszym etapie osobna aplikacja dostępna także z mObywatela, docelowo połączenie; dotychczasowe usługi mObywatela mają zostać. Pokaz `#/potwierdz-wiek` porównuje udostępnienie całego dokumentu z potwierdzeniem samej pełnoletniości (DEMO). Przykłady usług transgranicznych są opisane jako zamierzenia z komunikatu, nie jako działające usługi. Odnośniki z `#/prawa-portfela` i `#/kto-pyta`.
+- Asystent: reguły w telefonie (bez AI) dla „wGotowości”, „szkolenia obronne” i „czy portfel zastąpi mObywatela”. Pytania o WOT, przysięgę i służbę wojskową dalej prowadzą do `#/flow/wot`.
+
+Źródła: [MON, 18.09.2026](https://www.gov.pl/web/obrona-narodowa/trwa-program-szkolen-obronnych-wgotowosci-dzis-bezpieczni-jutro), [MON, 19.09.2026](https://www.gov.pl/web/obrona-narodowa/wgotowosci---bezplatne-jednodniowe-szkolenia-dla-obywateli), [MC, 06.11.2025](https://www.gov.pl/web/cyfryzacja/zapisy-na-szkolenia-obronne--nowa-usluga-w-aplikacji-mobywatel), [wojsko-polskie.pl/wgotowosci](https://www.wojsko-polskie.pl/wgotowosci), [MC, 17.11.2026](https://www.gov.pl/web/cyfryzacja/rzad-przyjal-projekt-ustawy-o-europejskim-portfelu-tozsamosci-cyfrowej), [KPRM, 17.11.2026](https://www.gov.pl/web/premier/projekt-ustawy-o-zmianie-ustawy-o-uslugach-zaufania-oraz-identyfikacji-elektronicznej-oraz-niektorych-innych-ustaw3).
+
+### Niepewności (v28)
+
+- Wiek uczestników szkoleń nie jest jednoznacznie podany we wszystkich źródłach: MON (18.09.2026) pisze o osobach od 13. roku życia, komunikat MC o zapisach przez mObywatela (06.11.2025) o pełnoletnich obywatelach z mDowodem, a część WCR w listopadzie 2026 r. nadal o osobach pełnoletnich. W interfejsie jest to opisane jako rozbieżność, z odesłaniem do strony programu.
+- „Do końca listopada 2026 r.” pochodzi ze stron MON z września 2026. Aktualny nabór trzeba sprawdzić na stronie programu albo w mObywatelu – prototyp nie ma żywej listy terminów.
+- Projekt ustawy o EPTC został przyjęty przez rząd, ale nie sprawdzano, czy Sejm zdążył go już uchwalić po 17.11.2026. Ekran traktuje go jako projekt.
+- Nie znaleziono publicznego, pewnego identyfikatora aplikacji #wGotowości w Google Play, więc prototyp nie otwiera sklepu z aplikacją, tylko strony gov.pl i wojsko-polskie.pl.
