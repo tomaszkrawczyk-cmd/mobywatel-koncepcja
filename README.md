@@ -232,3 +232,29 @@ Fakty w interfejsie pochodzą ze stron gov.pl, nie z tych wpisów.
 - „Do końca listopada 2026 r.” pochodzi ze stron MON z września 2026. Aktualny nabór trzeba sprawdzić na stronie programu albo w mObywatelu – prototyp nie ma żywej listy terminów.
 - Projekt ustawy o EPTC został przyjęty przez rząd, ale nie sprawdzano, czy Sejm zdążył go już uchwalić po 17.11.2026. Ekran traktuje go jako projekt.
 - Nie znaleziono publicznego, pewnego identyfikatora aplikacji #wGotowości w Google Play, więc prototyp nie otwiera sklepu z aplikacją, tylko strony gov.pl i wojsko-polskie.pl.
+
+## v29 – karta rowerowa dziecka i lekcje „Wnuk uczy babcię”
+
+Plik `v29.js` (w `index.html` za `v28.js`). **Łańcuch Gemma → reguły → Bielik i pobieranie Bielika są bez zmian.** Nic nie zostało usunięte. Rodzina (`#/family`), tryb seniora, „Czy aplikacja jest gotowa?” (`#/gotowosc`), wskazówka (`#/wskazowka`), stan dokumentów (`#/zdrowie-dokumentow`) i weryfikator QR (`#/podrobki`) zostają; nowe ekrany do nich prowadzą.
+
+Inspiracja z X (rozwinięta, nie skopiowana):
+- [PremierRP](https://x.com/PremierRP/status/2121627755271835942) i [K. Gałecka](https://x.com/K_Galecka/status/2121889229844222399) – zapowiedź zmian przy karcie rowerowej.
+- [CYFRA_GOV_PL](https://x.com/CYFRA_GOV_PL/status/2123370704611733532) – Szkoła Międzypokoleniowa.
+- [bikewithkids](https://x.com/bikewithkids/status/2122372991988449491) – relacja o usuwaniu aplikacji przy aktualizacji.
+
+Fakty w interfejsie pochodzą ze stron gov.pl, eli.gov.pl i info.mobywatel.gov.pl, nie z tych wpisów.
+
+- **Karta rowerowa dziecka** (`#/karta-rowerowa`, dziecko `#/karta-rowerowa/jan|zofia|kuba`, quiz `#/karta-quiz`, podgląd `#/karta-podglad`). Widok rodzica na dzieciach Anny Kowalskiej z Rodziny (Jan, Zofia, Jakub). Kalkulator od przykładowej daty urodzenia, na zegarze prototypu 23.10.2026, rozdziela prawo obowiązujące (karta od 10 lat, dokument do 18 lat) i projekt MI z 5.10.2026 (od 9 lat, obowiązek do 14 lat, opieka osoby od 16 lat, cyfrowa karta gdy MC ogłosi gotowość). Kroki: kto wydaje kartę (szkoła podstawowa albo WORD/OSK), co przygotować bez wymyślonej listy sprzętu, quiz DEMO z czterech ogólnie znanych zasad, podgląd w mObywatelu Junior oznaczony jako nieważny, plik `.ics`. Odnośniki z `#/family` i z karty dziecka.
+- **Wnuk uczy babcię** (`#/razem-uczymy`, lekcja `#/razem-lekcja/…`, ściąga `#/razem-sciaga`). Siedem lekcji na telefonie starszej osoby: duże litery, aktualizacja, dodanie dokumentu, pokazanie dokumentu, fałszywy SMS, kod QR, prośba o pomoc. Każda: „ja robię / ty robisz”, ptaszek „zrobiła to sama”, postęp i odznaka. Zapis w `localStorage` (`v29-razem`), bez imion. W pokazie starsza osoba to Halina Wrona, a jej mama Zofia Wrona (84) jest tą osobą z upoważnień, bez osobnego konta. Lekcje odsyłają do istniejących ekranów zamiast je powtarzać. Odnośniki z rodziny, trybu seniora na starcie, ustawień, gotowości aplikacji, stanu dokumentów oraz modułów oszustwa i QR.
+- Asystent: reguły w telefonie (bez AI) dla „od ilu lat karta rowerowa” i „wnuk uczy babcię”. Pytanie o kartę dużej rodziny nie jest przechwytywane.
+
+Źródła: [MI, 5.10.2026](https://www.gov.pl/web/infrastruktura/beda-nowe-zasady-ruchu-rowerowego-dzieci-i-uzyskiwania-karty-rowerowej), [ustawa o kierujących pojazdami, Dz.U. 2024 poz. 1210](https://eli.gov.pl/api/acts/DU/2024/1210/text.html), [MC o certyfikatach](https://www.gov.pl/web/cyfryzacja/wazna-aktualizacja-w-mobywatelu-zaloguj-sie-do-aplikacji-do-5-sierpnia), [info.mobywatel.gov.pl o aktualizacji aplikacji](https://info.mobywatel.gov.pl/aktualnosci/zaktualizuj-aplikacje-aby-nadal-z-niej-korzystac), [MC i MEN o Szkole międzypokoleniowej](https://www.gov.pl/web/cyfryzacja/pokolenia-polaczone-wiedza-wyniki-konkursu-szkola-miedzypokoleniowa).
+
+### Niepewności (v29)
+
+- Treści wpisów na X nie udało się odczytać (brak uprawnienia do odczytu postów). Fakty są ze stron rządowych, nie z tych wpisów.
+- Nowszy tekst jednolity ustawy (Dz.U. 2025 poz. 1226) jest wskazywany w źródłach wtórnych. Zdania o wydaniu karty, wieku 18 lat i dokumencie mobilnym sprawdzono w Dz.U. 2024 poz. 1210 na eli.gov.pl. Progi „z 10 na 9” i „z 18 na 14” potwierdza komunikat MI z 5.10.2026 jako opis stanu, od którego projekt odchodzi.
+- Numeru projektu w RCL, daty wejścia w życie i tego, czy Rada Ministrów już go przyjęła, nie potwierdzono na gov.pl. W interfejsie jest to propozycja MI, nie ustawa.
+- Nie potwierdzono, że cyfrowa karta rowerowa już działa w mObywatelu albo w mObywatelu Junior. Podgląd jest DEMO.
+- Nie znaleziono urzędowej instrukcji, która przy zwykłej aktualizacji każe usunąć aplikację i dodać dokumenty od nowa. Relacja użytkownika zostaje sygnałem, nie procedurą.
+- Daty urodzenia dzieci są dobrane tak, by na 23.10.2026 dawały wiek ze spisu rodziny (8, 3 i 16 lat). Nie pochodzą z rejestru.
