@@ -880,7 +880,7 @@ const st=document.createElement('style');st.textContent=`
 .v32top{display:inline-flex;align-items:center;gap:3px;min-width:44px;height:36px;border-radius:18px;border:1.5px solid #d6dbe6;background:#fff;color:var(--txt);font-weight:800;font-size:13px;cursor:pointer;padding:0 8px;flex-shrink:0}
 .v32top:focus-visible,.v32lb button:focus-visible,.v32nb:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
 body.senior .v32top{height:44px;font-size:15px;min-width:54px}
-.top{flex-wrap:nowrap;min-width:0}.top h2{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.top{min-width:0}body.senior .top{flex-wrap:wrap;row-gap:6px;height:auto}body.senior .top h2{flex:1 0 auto;min-width:auto;overflow:visible;max-width:100%}body.senior .top .v31ic{margin-left:auto}.top h2{min-width:0;overflow:hidden;text-overflow:ellipsis}
 .v32lb{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;margin:8px 0}.v32lb button{min-height:48px;border-radius:14px;border:2px solid #d6dbe6;background:#fff;font-family:inherit;font-weight:700;font-size:16px;line-height:1.2;cursor:pointer;color:var(--txt);padding:8px;min-width:0;overflow-wrap:anywhere}
 .v32lb button.on{border-color:var(--red);background:#fff1f3;color:#a3102d}.v32lb button.on:after{content:' ✓'}
 .v32lb.big button{min-height:56px;font-size:18px}.v32lb.row{grid-template-columns:repeat(auto-fit,minmax(96px,auto))}.v32lb.row button{min-height:40px;padding:4px 12px;font-size:14px;border-radius:20px}body.senior .v32lb.row{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}body.senior .v32lb.row button{min-height:52px;font-size:17px}
